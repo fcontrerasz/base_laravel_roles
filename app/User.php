@@ -78,7 +78,7 @@ class User extends Authenticatable
     }
     public function getRole()
     {
-        return $this->roles()->idrol;
+        return $this->roles()->first()->rol_nombre;
     }
 
 }

@@ -21,6 +21,8 @@
 </head>
 <body>
     <div id="app">
+
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -34,6 +36,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                    </ul>
+
+                    <ul class="nav navbar-nav">
+                        @foreach ($menus as $key => $item)
+                            @if ($item['padre'] != 0)
+                                @break
+                            @endif
+                            @include('menu.menues', ['item' => $item])
+                        @endforeach
                     </ul>
 
                     <!-- Right Side Of Navbar -->
