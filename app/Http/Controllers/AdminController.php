@@ -13,14 +13,12 @@ class AdminController extends Controller
 	public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin');
-        //$request->user()->hasRole('admin'));
-        
-        //$this->middleware('Role:ROLE_ADMIN');
+       //$this->middleware('role:admin');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['superadmin', 'admin']);
         return view('admin');
     }
 

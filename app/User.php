@@ -76,5 +76,9 @@ class User extends Authenticatable
         }
         return false;
     }
+    public function getRole()
+    {
+        return $this->roles()->idrol;
+    }
 
 }

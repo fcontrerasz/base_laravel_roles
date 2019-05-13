@@ -39,6 +39,8 @@ class CreateUsuariosTable extends Migration
             array('name' => 'Super Administrador', 'email' => 'super@reportes.cl', 'password' => '$2y$10$V9phlKyTk410BiO2r8B81.feTWVL2zC.Eqt14FpVUgsab8BB/LANm', 'username' => 'superadmin', 'activado' => 1),
             array('name' => 'Administrador', 'email' => 'admin@reportes.cl', 'password' => '$2y$10$V9phlKyTk410BiO2r8B81.feTWVL2zC.Eqt14FpVUgsab8BB/LANm', 'username' => 'admin', 'activado' => 1),
             array('name' => 'Auditor', 'email' => 'auditor@reportes.cl', 'password' => '$2y$10$V9phlKyTk410BiO2r8B81.feTWVL2zC.Eqt14FpVUgsab8BB/LANm', 'username' => 'auditor', 'activado' => 1),
+            array('name' => 'Experto', 'email' => 'experto@reportes.cl', 'password' => '$2y$10$V9phlKyTk410BiO2r8B81.feTWVL2zC.Eqt14FpVUgsab8BB/LANm', 'username' => 'experto', 'activado' => 1),
+            array('name' => 'Empresa', 'email' => 'empresa@reportes.cl', 'password' => '$2y$10$V9phlKyTk410BiO2r8B81.feTWVL2zC.Eqt14FpVUgsab8BB/LANm', 'username' => 'empresa', 'activado' => 1),
             array('name' => 'Generico', 'email' => 'generico@reportes.cl', 'password' => '$2y$10$V9phlKyTk410BiO2r8B81.feTWVL2zC.Eqt14FpVUgsab8BB/LANm', 'username' => 'generico', 'activado' => 1)
         );
        // Model::insert($data);

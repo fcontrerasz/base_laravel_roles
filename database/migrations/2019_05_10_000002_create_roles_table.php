@@ -31,10 +31,10 @@ class CreateRolesTable extends Migration
         $data = array(
             array('rol_glosa' => 'Super Administrador', 'rol_nombre' => 'superadmin'),
             array('rol_glosa' => 'Administrador', 'rol_nombre' => 'admin'),
-            array('rol_glosa' => 'Generico', 'rol_nombre' => 'generico'),
             array('rol_glosa' => 'Auditor', 'rol_nombre' => 'auditor'),
             array('rol_glosa' => 'Experto', 'rol_nombre' => 'experto'),
-            array('rol_glosa' => 'Empresa', 'rol_nombre' => 'empresa')
+            array('rol_glosa' => 'Empresa', 'rol_nombre' => 'empresa'),
+            array('rol_glosa' => 'Generico', 'rol_nombre' => 'generico')
         );
        // Model::insert($data);
         DB::table('roles')->insert($data);

@@ -57,6 +57,34 @@ class CreateAsigRolesTable extends Migration
         )
         );
 
+        DB::table('asig_roles')->insert(
+        array(
+            'idusr' => 3,
+            'idrol' => 3
+        )
+        );
+
+        DB::table('asig_roles')->insert(
+        array(
+            'idusr' => 4,
+            'idrol' => 4
+        )
+        );
+
+        DB::table('asig_roles')->insert(
+        array(
+            'idusr' => 5,
+            'idrol' => 5
+        )
+        );
+
+        DB::table('asig_roles')->insert(
+        array(
+            'idusr' => 6,
+            'idrol' => 6
+        )
+        );
+
     }
 
     /**

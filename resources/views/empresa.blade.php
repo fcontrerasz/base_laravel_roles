@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Hola Usuario Genérico
+                    Hola Empresa
                 </div>
             </div>
         </div>

@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/inicio', 'HomeController@index')->name('home');
 Route::get('/superadmin', 'SuperAdminController@index');
 Route::get('/admin', 'AdminController@index');
+Route::get('/auditor', 'AuditorController@index');
+Route::get('/empresa', 'EmpresaController@index');
+Route::get('/experto', 'ExpertoController@index');
+Route::get('/panel', 'GenericoController@index');

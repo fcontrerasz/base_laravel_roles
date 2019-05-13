@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Hola Usuario Genérico
+                    Hola Experto
                 </div>
             </div>
         </div>

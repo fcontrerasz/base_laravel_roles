@@ -22,16 +22,20 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request)
-    {
+    {   
+        // dd($request->user());
         // return view('home');
-        $request->user()->authorizeRoles(['usuario', 'admin']);
-        
-
         if($request->user()->hasRole('admin')){
             return view('admin');
         }elseif($request->user()->hasRole('superadmin')){
             return view('super');
-        }else return view('home');
+        }elseif($request->user()->hasRole('auditor')){
+            return view('auditor');
+        }elseif($request->user()->hasRole('experto')){
+            return view('experto');
+        }elseif($request->user()->hasRole('empresa')){
+            return view('empresa');
+        }else return redirect('/panel');
         //return ;
     }
 }
