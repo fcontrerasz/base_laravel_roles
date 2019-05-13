@@ -1,0 +1,1 @@
+﻿INSERT INTO roles(idrol,rol_nombre,rol_glosa,created_at,updated_at) VALUES (1, 'superadmin', 'SuperAdministrador', NULL, NULL);

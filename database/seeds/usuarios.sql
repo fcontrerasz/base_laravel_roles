@@ -1,0 +1,2 @@
+﻿SET NAMES 'utf8';
+INSERT INTO usuarios(idusr, name, email, email_verified_at, password, remember_token, created_at, updated_at, username, activado) VALUES (1, 'Francisco Contreras', 'superadmin@sso.cl', '2019-03-16 09:02:41', '$2y$10$V9phlKyTk410BiO2r8B81.feTWVL2zC.Eqt14FpVUgsab8BB/LANm', NULL, '2019-03-06 18:24:54', '2019-03-06 18:24:54', 'fcontreras', NULL);
