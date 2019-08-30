@@ -1,4 +1,7 @@
 @include('layouts.menu')
+@php
+    config(['app.subtitulo' => 'ADMIN']);
+@endphp
 <!DOCTYPE html>
 <html>
 
@@ -6,20 +9,24 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.titulo') }} - {{ config('app.subtitulo') }}</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style2.css') }}" rel="stylesheet">
+    
+    <link href="{{ asset('css/plugins/blueimp/css/blueimp-gallery.min.css') }}" rel="stylesheet">
 
 </head>
 
 
-<body class="fixed-sidebar no-skin-config full-height-layout">
+<body class="fixed-sidebar skin-2 ">
 
-<div id="wrapper">
+    <div id="wrapper">
 
     <nav class="navbar-default navbar-static-side" role="navigation">
 
@@ -33,18 +40,81 @@
 
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
-            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                    <form role="search" class="navbar-form-custom" method="post" action="#">
-                        <div class="form-group">
-                            <input type="text" placeholder="Busca algo..." class="form-control" name="top-search" id="top-search">
-                        </div>
-                    </form>
-                </div>
-                <ul class="nav navbar-top-links navbar-right">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+
+        <!--  <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="{{ route('logout') }}"
+                        
+
+                    </li>
+                </ul>-->
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Bienvenido(a) {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} - {{ Auth::user()->getRole()}}.</span>
+                </li>
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">46h ago</small>
+                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right text-navy">5h ago</small>
+                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">23h ago</small>
+                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="mailbox.html">
+                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                
+
+
+                <li>
+                    <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fa fa-sign-out"></i> {{ __('Logout') }}
@@ -53,39 +123,67 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                </li>
+            </ul>
 
-                    </li>
-                </ul>
-
-            </nav>
+        </nav>
         </div>
-        <div class="wrapper wrapper-content animated fadeInRight">
-            @yield('content')
-          <!--  <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center m-t-lg">
-                        <h1>
-                            INSPINIA Static Seed Project for BS4
-                        </h1>
-                        <small>
-                            It is an application skeleton for a typical web app. You can use it to quickly bootstrap your webapp projects and dev environment for these projects.
-                        </small>
-                    </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Proyecto</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Inicio</a>
+                        </li>
+                        <li>
+                            <a>Etapa 2</a>
+                        </li>
+                        <li class="active">
+                            <strong>Etapa 3</strong>
+                        </li>
+                    </ol>
                 </div>
-            </div>-->
-        </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2018
-            </div>
-        </div>
+                <div class="col-lg-2">
 
-    </div>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content  animated fadeInRight dataTables_wrapper">
+              @yield('content')
+
+            </div>
+
+        <!--<div class="footer">
+            <div class="pull-right">
+                <strong>Derechos</strong> Patache &copy; 2015-2019
+            </div>
+        </div>-->
+
+        </div>
+    
 </div>
+        
+   
+
+    <!-- princiales scripts -->
+    <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- base javascript -->
+    <script src="{{ asset('js/patache.js') }}"></script>
+    <script src="{{ asset('js/plugins/pace/pace.min.js') }}"></script>
+
+    <!-- jQuery UI -->
+    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+
+
+    <!-- scripts_base  -->
     @yield('scripts_base')
+
+    <!-- fin - scripts_base -->
+    
 
 </body>
 

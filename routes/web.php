@@ -12,10 +12,27 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(auth()->user()){
+    	if(auth()->user()->hasRole('superadmin')){
+            return redirect('/superadmin');
+        }elseif(auth()->user()->hasRole('admin')){
+            return redirect('/admin');
+        }elseif(auth()->user()->hasRole('auditor')){
+            return redirect('/auditor');
+        }elseif(auth()->user()->hasRole('contratista')){
+            return redirect('/contratista');
+        }elseif(auth()->user()->hasRole('ito')){
+            return redirect('/ito');
+        }elseif(auth()->user()->hasRole('generico')){
+            return redirect('/panel');
+        } return abort(500);
+    }else return view('auth.login');
 });
 
-Auth::routes();
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+//Auth::routes();
 
 Route::get('/inicio', 'HomeController@index')->name('home');
 Route::get('/superadmin', 'SuperAdminController@index');
@@ -24,3 +41,5 @@ Route::get('/auditor', 'AuditorController@index');
 Route::get('/empresa', 'EmpresaController@index');
 Route::get('/experto', 'ExpertoController@index');
 Route::get('/panel', 'GenericoController@index');
+
+Route::resource('usuariosweb', 'UsuariosWebController')->middleware('auth');
