@@ -63,7 +63,7 @@
                     </ul> 
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                    <span class="m-r-sm text-muted welcome-message">Bienvenido(a) {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} - {{ Auth::user()->getRole()}}.</span>
+                    <span class="m-r-sm text-muted welcome-message">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} ({{ Auth::user()->getRole()}}).</span>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

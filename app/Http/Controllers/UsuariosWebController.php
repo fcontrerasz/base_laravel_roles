@@ -9,6 +9,7 @@ use App\Forms\UsuariosWebFrm;
 use DB; 
 use Hash;
 use Auth;
+use Session;
 
 class UsuariosWebController extends Controller
 {
@@ -42,11 +43,11 @@ class UsuariosWebController extends Controller
 
     }
 
-    public function showChangePasswordForm(){
+    public function claveForm(){
         return view('auth.changepass');
     }
 
-    public function changePassword(Request $request){
+    public function cambiarClave(Request $request){
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
@@ -82,36 +83,25 @@ class UsuariosWebController extends Controller
     {
     	
         $form = $this->getForm();
-        //dd("store");
+        
+
         if (!$form->isValid()) {
+            Session::flash('error', 'No se pudo guardar.');
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
+       // dd($form->getFieldValues());
+
+        $clave = $form->getFieldValues()["password"];
+
         $campos = $form->getFieldValues();
-        $campos["password"] = bcrypt("12345678");
+        $campos["password"] = bcrypt($clave);
         $idrol = $campos["rol"];
         unset($campos["rol"]);
         //dd($campos);
         $aa = UsuariosWeb::create($campos);
 
-        /*
-    $user = User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => bcrypt($data['password']),
-        ]);
-        
-        $user
-        ->roles()
-        ->attach(Role::where('rol_nombre', 'usuario')->first());
-
-        */
-
-        //ASIG_ROLES
-
-        // dd($aa->idusr);
-
-         DB::table('ASIG_ROLES')->insert(
+        DB::table('ASIG_ROLES')->insert(
             ['idrol' => $idrol, 
              'idusr' => $aa->idusr,
              "created_at" =>  \Carbon\Carbon::now(), # new \Datetime()
@@ -131,7 +121,12 @@ class UsuariosWebController extends Controller
 
     public function update($id)
     {   
-    	//dd($id);
+    	$exists = UsuariosWeb::where('idusr', '=', $id)->exists();
+        if(!$exists){
+            Session::flash('error', 'Usuario no existe');
+            return redirect()->back()->withInput();
+        }
+
         $model = UsuariosWeb::find($id);
         $form = $this->getForm($model);
         $form->redirectIfNotValid();
