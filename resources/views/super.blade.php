@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
+    @if($breadcrumb->title != 'Inicio')
+     {{ Breadcrumbs::render('inicio') }}
+    @endif
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

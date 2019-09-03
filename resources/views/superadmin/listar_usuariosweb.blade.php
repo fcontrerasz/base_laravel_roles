@@ -9,6 +9,11 @@
 
 @extends('layouts.admin')
 
+@section('breadcrumbs')
+    <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
+    {{ Breadcrumbs::render('usuariosweb.index') }}
+@endsection
+
 @section('content')
 
  <div class="row border-bottom white-bg">
@@ -35,7 +40,7 @@
 
                                 <div class="dt-buttons btn-group pull-right">
                                 
-                                <a class="btn btn-default buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>Excel</span>
+                                <a href="{{ URL::to('usuariosweb/exportar') }}" target="_blank" class="btn btn-default buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>Excel</span>
                                 </a>
                                 <a class="hide btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>PDF</span></a>
                                 <a class="hide btn btn-default buttons-print" tabindex="0" aria-controls="DataTables_Table_0"><span>Imprimir</span></a>

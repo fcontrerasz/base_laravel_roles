@@ -39,11 +39,14 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 //Auth::routes();
 
 Route::get('/inicio', 'HomeController@index')->name('home');
-Route::get('/superadmin', 'SuperAdminController@index');
-Route::get('/admin', 'AdminController@index');
-Route::get('/auditor', 'AuditorController@index');
-Route::get('/empresa', 'EmpresaController@index');
-Route::get('/experto', 'ExpertoController@index');
-Route::get('/panel', 'GenericoController@index');
+Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin');
+Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/auditor', 'AuditorController@index')->name('auditor');
+Route::get('/empresa', 'EmpresaController@index')->name('empresa');
+Route::get('/experto', 'ExpertoController@index')->name('experto');
+Route::get('/panel', 'GenericoController@index')->name('panel');
 
+Route::get('/usuariosweb/exportar', 'UsuariosWebController@exportar')->name('usuariosweb.exportar');
+//Route::get('/usuariosweb/create', 'UsuariosWebController@create')->name('usuariosweb.create');
 Route::resource('usuariosweb', 'UsuariosWebController')->middleware('auth');
+

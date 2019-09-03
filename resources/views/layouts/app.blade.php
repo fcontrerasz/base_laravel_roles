@@ -12,7 +12,7 @@
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/plugins/blueimp/css/blueimp-gallery.min.css') }}" rel="stylesheet">
 
@@ -24,6 +24,7 @@
 
         .navbar-brand {
             padding: 10px 25px !important;
+            background: none !important;
         }
 
         .navbar-brand img {
@@ -34,6 +35,10 @@
             height: auto;
         }
 
+        .sombra{
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
     </style>
 
 </head>
@@ -42,7 +47,7 @@
 
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom white-bg">
+        <div class="row border-bottom white-bg sombra">
         <nav class="navbar navbar-static-top" role="navigation">
             <div class="navbar-header">
                 <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
@@ -133,6 +138,14 @@
             </div>
         </nav>
         </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        @yield('breadcrumbs')
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
         <div class="wrapper wrapper-content">
             <div class="container">
             

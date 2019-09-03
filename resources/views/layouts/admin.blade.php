@@ -17,9 +17,18 @@
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style2.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/plugins/blueimp/css/blueimp-gallery.min.css') }}" rel="stylesheet">
+
+    <style>
+
+        .navbar-brand {
+            background: none !important;
+        }
+
+    </style>
 
 </head>
 
@@ -130,18 +139,7 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Proyecto</h2>
-                    <ol class="breadcrumb">
-                        <li>
-                            <a href="index.html">Inicio</a>
-                        </li>
-                        <li>
-                            <a>Etapa 2</a>
-                        </li>
-                        <li class="active">
-                            <strong>Etapa 3</strong>
-                        </li>
-                    </ol>
+                     @yield('breadcrumbs')
                 </div>
                 <div class="col-lg-2">
 

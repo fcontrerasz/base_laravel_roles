@@ -1,4 +1,11 @@
 @extends('layouts.admin')
+
+@section('breadcrumbs')
+    <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
+    @if($breadcrumb->title != 'Inicio')
+     {{ Breadcrumbs::render('inicio') }}
+    @endif
+@endsection
  
 @section('content')
 <div class="wrapper wrapper-content animated fadeInRight">

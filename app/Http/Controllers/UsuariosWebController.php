@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PlantillaExport;
 use App\UsuariosWeb;
 use App\Forms\UsuariosWebFrm;
 use DB; 
@@ -149,6 +151,14 @@ class UsuariosWebController extends Controller
         Session::put('message', 'Eliminado!');
         return redirect()->route('usuariosweb.index');
     }
+
+    public function exportar()
+    {
+        return Excel::download(new PlantillaExport(), 'plantilla_123123_.xlsx');
+    }
+
+
+
 
   
 }

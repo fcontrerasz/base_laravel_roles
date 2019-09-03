@@ -1,7 +1,7 @@
 @section('usuario')
                 <li class="nav-header text-center"> 
                     <div class="profile-element">
-                        <img alt="image" class="" src="{{ asset('img/logo_sm.png') }}"/>
+                        <img alt="image" class="" src="{{ asset('img/logo_blank.png') }}"/>
                     </div>
                 </li>
 @endsection
