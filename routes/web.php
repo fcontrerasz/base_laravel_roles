@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Routing\UrlGenerator;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +28,29 @@ Route::get('/', function () {
         } return abort(500);
     }else return view('auth.login');
 });
+
+
+Route::get('generate-pdf','GenerarPDFController@generatePDF');
+
+
+Route::get('email-test', function(){
+  
+	$details['email'] = 'fcontrerasz@gmail.com';
+  
+    dispatch(new App\Jobs\SendEmailJob($details));
+  
+    dd('done');
+});
+
+
+Route::get('/encuestas/{encuesta}/aplicar', function ($encuesta) {
+    dd($encuesta);
+})->name('encuestas.aplicar_encuesta')->middleware('signed');
+
+Route::get('/trae_encuesta', function () {
+	$ruta = URL::signedRoute('encuestas.aplicar_encuesta', ['encuesta' => 1]);
+    dd($ruta);
+})->name('encuestas');
 
 
 Route::get('/cambiarpass','UsuariosWebController@claveForm');
