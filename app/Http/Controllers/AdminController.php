@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Role;
+use Auth;
 
 
 class AdminController extends Controller
@@ -19,7 +20,8 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['superadmin', 'admin']);
-        return view('admin');
+      //  dd( Auth::user()->idusr);
+        return view('admin2');
     }
 
 }

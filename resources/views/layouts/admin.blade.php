@@ -35,12 +35,15 @@
 
 <body class="fixed-sidebar skin-2 ">
 
-    <div id="wrapper">
+    <div id="wrapper" class="app">
+    
+    <x-loading ref="xcargad"></x-loading> 
 
     <nav class="navbar-default navbar-static-side" role="navigation">
 
         <div class="sidebar-collapse">
             
+
             @yield('menues') 
 
         </div>
@@ -160,7 +163,7 @@
     
 </div>
         
-   
+    <script src="{{asset('js/app.js')}}" ></script>
 
     <!-- princiales scripts -->
     <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
@@ -181,6 +184,8 @@
     @yield('scripts_base')
 
     <!-- fin - scripts_base -->
+
+
     
 
 </body>

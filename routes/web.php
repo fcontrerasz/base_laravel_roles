@@ -1,15 +1,13 @@
 <?php
 use Illuminate\Routing\UrlGenerator;
+
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('vue/', function () {
+    return view('welcome');
+});*/
+
+// Route to handle page reload in Vue except for api routes
+
 
 Route::get('/', function () {
     if(auth()->user()){
@@ -26,9 +24,16 @@ Route::get('/', function () {
         }elseif(auth()->user()->hasRole('generico')){
             return redirect('/panel');
         } return abort(500);
-    }else return view('auth.login');
+   }else return view('auth.login');
 });
 
+//Route::get('/admin', 'AdminController@index')->name('admin');
+
+Route::get('/admin/{any?}', function (){
+    return view('admin2', [
+        'auth_user' => Auth::user()
+    ]);
+})->where('any', '^(?!api\/)[\/\w\.-]*')->name('admin');
 
 Route::get('generate-pdf','GenerarPDFController@generatePDF');
 
@@ -63,7 +68,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/inicio', 'HomeController@index')->name('home');
 Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin');
-Route::get('/admin', 'AdminController@index')->name('admin');
+//Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/auditor', 'AuditorController@index')->name('auditor');
 Route::get('/empresa', 'EmpresaController@index')->name('empresa');
 Route::get('/experto', 'ExpertoController@index')->name('experto');
@@ -72,4 +77,22 @@ Route::get('/panel', 'GenericoController@index')->name('panel');
 Route::get('/usuariosweb/exportar', 'UsuariosWebController@exportar')->name('usuariosweb.exportar');
 //Route::get('/usuariosweb/create', 'UsuariosWebController@create')->name('usuariosweb.create');
 Route::resource('usuariosweb', 'UsuariosWebController')->middleware('auth');
+
+
+/*	Route::group(['prefix' => 'exports'], function() {
+	    Route::get('contacts', 'ContactController@export');
+	    Route::get('organizations', 'OrganizationController@export');
+	    Route::get('items', 'ItemController@export');
+	    Route::get('leads', 'LeadController@export');
+	    Route::get('opportunities', 'OpportunityController@export');
+	    Route::get('proposals', 'ProposalController@export');
+	    Route::get('contracts', 'ContractController@export');
+	    Route::get('projects', 'ProjectController@export');
+	    Route::get('invoices', 'InvoiceController@export');
+	    Route::get('payments', 'PaymentController@export');
+	    Route::get('expenses', 'ExpenseController@export');
+	    Route::get('vendors', 'VendorController@export');
+	    Route::get('payment_requests', 'PaymentRequestCrudController@export');
+
+	});*/
 

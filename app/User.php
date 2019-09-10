@@ -81,4 +81,30 @@ class User extends Authenticatable
         return $this->roles()->first()->rol_nombre;
     }
 
+    public function topLinks()
+    {
+        $items = [
+            'overview'
+        ];
+
+        /*foreach($this->role->permissions as $group) {
+            if($group['name'] === 'settings') {
+                foreach($group['actions'] as $key => $value) {
+                    if($value) {
+                        $items[] = $group['name'];
+                    }
+                }
+            } else {
+                if(isset($group['actions']['index']) && !$group['actions']['index']) {
+                    // not allowed
+                } else {
+                    $items[] = $group['name'];
+                }
+            }
+
+        }*/
+
+        return $items;
+    }
+
 }

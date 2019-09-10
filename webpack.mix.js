@@ -11,30 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-
-
-    mix.webpackConfig({
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      jquery: "jquery/src/jquery",
-      '@': __dirname + '/resources'
-    },
-  },
-})
-
-
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
-
-mix.copyDirectory('resources/assets/css', 'public/css');
-mix.copyDirectory('resources/assets/js', 'public/js');
-mix.copyDirectory('resources/assets/fonts', 'public/fonts');
-mix.copyDirectory('resources/assets/css/patterns', 'public/css/patterns');
-mix.copyDirectory('resources/assets/js/plugins', 'public/js/plugins');
-mix.copyDirectory('resources/assets/img', 'public/img');
-mix.copyDirectory('resources/assets/font-awesome', 'public/font-awesome');
-
-mix.styles([
-    'resources/sass/estilo.css'
-], 'public/css/all.css');
+   .sass('resources/sass/app.scss', 'public/css');
