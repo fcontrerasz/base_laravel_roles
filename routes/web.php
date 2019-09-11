@@ -1,13 +1,11 @@
 <?php
 use Illuminate\Routing\UrlGenerator;
 
-/*
-Route::get('vue/', function () {
-    return view('welcome');
-});*/
-
-// Route to handle page reload in Vue except for api routes
-
+Route::any('apiweb/{any}', function(){
+    ob_start();
+    require("api.php");
+    return ob_get_clean();
+})->where('any', '.*');
 
 Route::get('/', function () {
     if(auth()->user()){

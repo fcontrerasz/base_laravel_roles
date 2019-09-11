@@ -24,6 +24,9 @@
 
     <style>
 
+        [v-cloak] > * { display:none; }
+        [v-cloak]::before { content: "loading..."; }
+
         .navbar-brand {
             background: none !important;
         }

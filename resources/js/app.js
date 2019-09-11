@@ -30,7 +30,16 @@ Vue.use(MyPlugin)
 Vue.component('index', Index)
 
 Vue.use(VueAxios, axios)
-axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api`
+//axios.defaults.baseURL = `${process.env.MIX_APP_URL}/apiweb`
+axios.defaults.baseURL = `${process.env.MIX_APP_URL}/apiweb`
+
+
+/*axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': Laravel.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': 'Bearer ' + Laravel.apiToken,
+};*/
+
 
 const app = new Vue({
   el: '.app',
@@ -70,7 +79,7 @@ Vue.mixin({
 axios.interceptors.response.use(function (response) {
     return response;
   }, function (err) {
-    alert(err.response.status);
+    //alert(err.response.status);
     console.log(err);
 
     if(err.response.status === 401) {

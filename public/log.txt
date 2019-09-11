@@ -1,0 +1,328 @@
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "asig_roles" WHERE 1=2;
+
+SELECT * FROM "jobs" WHERE 1=2;
+
+SELECT * FROM "menus" WHERE 1=2;
+
+SELECT * FROM "migrations" WHERE 1=2;
+
+SELECT * FROM "obras" WHERE 1=2;
+
+SELECT * FROM "password_resets" WHERE 1=2;
+
+SELECT * FROM "roles" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"

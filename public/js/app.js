@@ -2543,12 +2543,98 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {//
+  data: function data() {
+    return {
+      has_error: false,
+      usuarios: {}
+    };
   },
+  mounted: function mounted() {},
   components: {
     userList: _components_usuarios_listar_usuarios_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  created: function created() {
+    var _self = this;
+
+    function getDATOS() {
+      return axios.get('/usuarios?transform=1').then(function (response) {
+        var xusuarios = response.data["usuarios"];
+        _self.usuarios = xusuarios;
+      })["catch"](function (error) {
+        console.log('Error: ' + error);
+      });
+    }
+
+    axios.all([getDATOS()]).then(axios.spread(function (acct, perms) {// alert("completado");
+      //  vm.ocupado = false;
+      //  vm.currentTab = 0;
+    }));
   }
 });
 
@@ -40623,15 +40709,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "card card-default" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("Liste des utilisateurs")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [_c("userList")], 1)
+  return _c("div", { staticClass: "row border-bottom white-bg" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "ibox float-e-margins" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "ibox-content" }, [
+          _vm.has_error
+            ? _c("div", { staticClass: "alert alert-danger" }, [
+                _c("p", [
+                  _vm._v(
+                    "Erreur, impossible de récupérer la liste des utilisateurs."
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table table-hover small " }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.usuarios, function(item) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(item.idusr))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.username))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.email))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.activado))]),
+                    _vm._v(" "),
+                    _vm._m(3, true)
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      ])
     ])
   ])
 }
@@ -40640,13 +40762,103 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card card-default" }, [
-      _c("div", { staticClass: "card-header" }, [_vm._v("Usuarios Dashboard")]),
+    return _c("div", { staticClass: "ibox-title" }, [
+      _c("h5", [_vm._v("Listado de Usuarios Web")]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _vm._v(
-          "\n            Bienvenue sur votre dashboard administrateur\n        "
+      _c("div", { staticClass: "ibox-tools" }, [
+        _c("a", { staticClass: "collapse-link" }, [
+          _c("i", { staticClass: "fa fa-chevron-up" })
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "dropdown-toggle",
+            attrs: { "data-toggle": "dropdown", href: "#" }
+          },
+          [_c("i", { staticClass: "fa fa-wrench" })]
         )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row m-b-sm m-t-sm" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "dt-buttons btn-group pull-right" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-default buttons-excel buttons-html5",
+              attrs: {
+                href: "",
+                target: "_blank",
+                tabindex: "0",
+                "aria-controls": "DataTables_Table_0"
+              }
+            },
+            [_c("span", [_vm._v("Excel")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "hide btn btn-default buttons-pdf buttons-html5",
+              attrs: { tabindex: "0", "aria-controls": "DataTables_Table_0" }
+            },
+            [_c("span", [_vm._v("PDF")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "hide btn btn-default buttons-print",
+              attrs: { tabindex: "0", "aria-controls": "DataTables_Table_0" }
+            },
+            [_c("span", [_vm._v("Imprimir")])]
+          ),
+          _vm._v(" "),
+          _c("a", { staticClass: "btn btn-primary", attrs: { href: "" } }, [
+            _vm._v("Nuevo Usuario")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("USUARIO")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("NOMBRE")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("CORREO")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("ACTIVO")]),
+        _vm._v(" "),
+        _c("td", { staticStyle: { width: "50px" } }, [_vm._v("ACCION")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("div", { staticClass: "btn-group" }, [
+        _c("a", { staticClass: "btn btn-sm btn-info", attrs: { href: "#" } }, [
+          _c("i", {
+            staticClass: "fa fa-pencil",
+            attrs: { "aria-hidden": "true" }
+          })
+        ])
       ])
     ])
   }
@@ -55883,8 +56095,15 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('x-usuario', __webpack_requ
 
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(_demo_js__WEBPACK_IMPORTED_MODULE_10__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('index', _Index__WEBPACK_IMPORTED_MODULE_6__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_4___default.a, axios__WEBPACK_IMPORTED_MODULE_1___default.a);
-axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "".concat("http://localhost", "/api");
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_4___default.a, axios__WEBPACK_IMPORTED_MODULE_1___default.a); //axios.defaults.baseURL = `${process.env.MIX_APP_URL}/apiweb`
+
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "".concat("http://localhost:8000", "/apiweb");
+/*axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': Laravel.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': 'Bearer ' + Laravel.apiToken,
+};*/
+
 var app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
   el: '.app',
   router: _router__WEBPACK_IMPORTED_MODULE_9__["default"]
@@ -55918,7 +56137,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
 axios__WEBPACK_IMPORTED_MODULE_1___default.a.interceptors.response.use(function (response) {
   return response;
 }, function (err) {
-  alert(err.response.status);
+  //alert(err.response.status);
   console.log(err);
 
   if (err.response.status === 401) {
