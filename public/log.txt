@@ -330,3 +330,15 @@ SELECT "idusr","name","email","email_verified_at","password","remember_token","u
 SELECT * FROM "usuarios" WHERE 1=2;
 
 SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"
+
+SELECT * FROM "usuarios" WHERE 1=2;
+
+SELECT "idusr","name","email","email_verified_at","password","remember_token","username","activado","created_at","updated_at" FROM "usuarios"

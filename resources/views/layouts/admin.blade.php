@@ -13,14 +13,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.titulo') }} - {{ config('app.subtitulo') }}</title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/plugins/blueimp/css/blueimp-gallery.min.css') }}" rel="stylesheet">
+
+
 
     <style>
 
@@ -163,7 +167,7 @@
     
 </div>
         
-    <script src="{{asset('js/app.js')}}" ></script>
+    
 
     <!-- princiales scripts -->
     <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
@@ -177,6 +181,8 @@
 
     <!-- jQuery UI -->
     <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+    <script src="{{asset('js/app.js')}}" ></script>
 
 
 

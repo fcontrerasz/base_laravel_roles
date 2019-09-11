@@ -43,12 +43,8 @@
     <x-loading ref="xcargad"></x-loading> 
 
     <nav class="navbar-default navbar-static-side" role="navigation">
-
         <div class="sidebar-collapse">
-            
-
             @yield('menues') 
-
         </div>
     </nav>
 
@@ -70,6 +66,17 @@
                 <li>
                     <span class="m-r-sm text-muted welcome-message">Bienvenido(a) {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} - {{ Auth::user()->getRole()}}.</span>
                 </li>
+
+                <li class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</li>
                 
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -166,13 +173,18 @@
     
 </div>
         
-    <script src="{{asset('js/app.js')}}" ></script>
+    
+     <script src="{{asset('js/app.js')}}" ></script>
 
     <!-- princiales scripts -->
     <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+
     <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
     <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+
 
     <!-- base javascript -->
     <script src="{{ asset('js/patache.js') }}"></script>
@@ -183,6 +195,8 @@
 
 
 
+
+    
     <!-- scripts_base  -->
     @yield('scripts_base')
 
