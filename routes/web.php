@@ -27,21 +27,15 @@ Route::get('/', function () {
 
 //Route::get('/admin', 'AdminController@index')->name('admin');
 
-Route::get('/admin/{any?}', function (){
-    return view('admin2', [
-        'auth_user' => Auth::user()
-    ]);
-})->where('any', '^(?!api\/)[\/\w\.-]*')->name('admin');
+Route::get('/vueadmin/{any?}', function (){
+    return view('vue');
+})->where('any', '^(?!api\/)[\/\w\.-]*')->name('vue');
 
 Route::get('generate-pdf','GenerarPDFController@generatePDF');
 
-
 Route::get('email-test', function(){
-  
 	$details['email'] = 'fcontrerasz@gmail.com';
-  
     dispatch(new App\Jobs\SendEmailJob($details));
-  
     dd('done');
 });
 
@@ -66,7 +60,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/inicio', 'HomeController@index')->name('home');
 Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin');
-//Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/auditor', 'AuditorController@index')->name('auditor');
 Route::get('/empresa', 'EmpresaController@index')->name('empresa');
 Route::get('/experto', 'ExpertoController@index')->name('experto');

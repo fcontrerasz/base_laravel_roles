@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
         $request->user()->authorizeRoles(['superadmin', 'admin']);
       //  dd( Auth::user()->idusr);
-        return view('admin2');
+        return view('admin');
     }
 
 }
