@@ -1,8 +1,6 @@
 @if ($item['submenu'] == [])
     <li>
-      <!--  <a href="{{ url($item['slug']) }}">{{ $item['nombre'] }} </a> -->
-        <router-link :to="{name: '{{ $item['slug'] }}'}">{{ $item['nombre'] }}</router-link>
-
+      <a href="{{ url($item['slug']) }}">{{ $item['nombre'] }} </a>
     </li>
 @else
     <li class="dropdown">
@@ -10,10 +8,9 @@
         <ul class="nav nav-second-level collapse">
             @foreach ($item['submenu'] as $submenu)
                 @if ($submenu['submenu'] == [])
-                    <!--<li><a href="{{ url('menu',['idmn' => $submenu['idmn'], 'slug' => $submenu['slug']]) }}">{{ $submenu['nombre'] }} </a></li>-->
-                    <li><router-link :to="{name: '{{ $item['slug'] }}'}">{{ $submenu['nombre'] }}</router-link></li>
+                    <li><a href="{{ url('menu',['idmn' => $submenu['idmn'], 'slug' => $submenu['slug']]) }}">{{ $submenu['nombre'] }} </a></li>
                 @else
-                    @include('menu.menus_admin', [ 'item' => $submenu ])
+                    @include('menu.menus_admin_vue', [ 'item' => $submenu ])
                 @endif
             @endforeach
         </ul>

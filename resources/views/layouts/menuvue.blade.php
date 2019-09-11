@@ -8,13 +8,14 @@
 
 @section('menues')
 
+
         <ul class="nav metismenu" id="side-menu">
                 @yield('usuario')
                 @foreach ($menus as $key => $item)
                             @if ($item['padre'] != 0)
                                 @break
                             @endif
-                            @include('menu.menus_admin', ['item' => $item])
+                            @include('menu.menus_admin_vue', ['item' => $item])
                 @endforeach
 
                  

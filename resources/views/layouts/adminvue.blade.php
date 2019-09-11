@@ -1,4 +1,4 @@
-@include('layouts.menu')
+@include('layouts.menuvue')
 @php
     config(['app.subtitulo' => 'ADMIN']);
 @endphp
@@ -23,6 +23,9 @@
     <link href="{{ asset('css/plugins/blueimp/css/blueimp-gallery.min.css') }}" rel="stylesheet">
 
     <style>
+
+        [v-cloak] > * { display:none; }
+        [v-cloak]::before { content: "loading..."; }
 
         .navbar-brand {
             background: none !important;
