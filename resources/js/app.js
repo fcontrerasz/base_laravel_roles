@@ -31,7 +31,7 @@ Vue.component('index', Index)
 
 Vue.use(VueAxios, axios)
 //axios.defaults.baseURL = `${process.env.MIX_APP_URL}/apiweb`
-axios.defaults.baseURL = `${process.env.MIX_APP_URL}/apiweb`
+axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api/records`
 
 
 /*axios.defaults.headers.common = {

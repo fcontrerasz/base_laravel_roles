@@ -2623,8 +2623,9 @@ __webpack_require__.r(__webpack_exports__);
     var _self = this;
 
     function getDATOS() {
-      return axios.get('/usuarios?transform=1').then(function (response) {
-        var xusuarios = response.data["usuarios"];
+      return axios.get('/usuarios').then(function (response) {
+        var xusuarios = response.data.records;
+        console.log(xusuarios);
         _self.usuarios = xusuarios;
       })["catch"](function (error) {
         console.log('Error: ' + error);
@@ -56097,7 +56098,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(_demo_js__WEBPACK_IMPORTED_MODULE
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('index', _Index__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_4___default.a, axios__WEBPACK_IMPORTED_MODULE_1___default.a); //axios.defaults.baseURL = `${process.env.MIX_APP_URL}/apiweb`
 
-axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "".concat("http://localhost:8000", "/apiweb");
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "".concat("http://localhost:8000", "/api/records");
 /*axios.defaults.headers.common = {
     'X-CSRF-TOKEN': Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest',

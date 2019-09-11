@@ -102,9 +102,10 @@
       let _self = this;
 
       function getDATOS() {
-            return axios.get('/usuarios?transform=1')
+            return axios.get('/usuarios')
             .then(response => {
-                   var xusuarios = response.data["usuarios"];
+                   var xusuarios = response.data.records;
+                   console.log(xusuarios);
                    _self.usuarios = xusuarios;                   
             }).catch(function (error) {
                     console.log('Error: ' + error);

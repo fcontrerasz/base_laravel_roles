@@ -1,12 +1,6 @@
 <?php
 use Illuminate\Routing\UrlGenerator;
 
-Route::any('apiweb/{any}', function(){
-    ob_start();
-    require("api.php");
-    return ob_get_clean();
-})->where('any', '.*');
-
 Route::get('/', function () {
     if(auth()->user()){
     	if(auth()->user()->hasRole('superadmin')){
