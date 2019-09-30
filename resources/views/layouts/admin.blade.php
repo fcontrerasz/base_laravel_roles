@@ -166,7 +166,7 @@
         </div>
     
 </div>
-        
+        <script src="{{asset('js/app.js')}}" ></script>
     
 
     <!-- princiales scripts -->
@@ -182,7 +182,7 @@
     <!-- jQuery UI -->
     <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
-    <script src="{{asset('js/app.js')}}" ></script>
+    
 
 
 

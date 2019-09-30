@@ -30,7 +30,12 @@ class Menu extends Model
     }
     public function optionsMenu($data)
     {
-        $datos = Menu::whereRaw('JSON_CONTAINS(permisos,\'"'.$data.'"\', \'$.roles\')')->get()->toArray();
+        $datos = Menu::whereRaw('JSON_CONTAINS(permisos,\'"'.$data.'"\', \'$.roles\')')
+        ->where('activo', 1)
+        ->orderby('padre')
+            ->orderby('orden')
+            ->orderby('nombre')
+            ->get()->toArray();
         return $datos;
     }
     public static function menus()

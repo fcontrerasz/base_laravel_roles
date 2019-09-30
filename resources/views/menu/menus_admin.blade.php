@@ -8,7 +8,7 @@
         <ul class="nav nav-second-level collapse">
             @foreach ($item['submenu'] as $submenu)
                 @if ($submenu['submenu'] == [])
-                    <li><a href="{{ url('menu',['idmn' => $submenu['idmn'], 'slug' => $submenu['slug']]) }}">{{ $submenu['nombre'] }} </a></li>
+                    <li><a href="{{ url($submenu['slug']) }}">{{ $submenu['nombre'] }} </a></li>
                 @else
                     @include('menu.menus_admin_vue', [ 'item' => $submenu ])
                 @endif

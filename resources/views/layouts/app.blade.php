@@ -12,7 +12,7 @@
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/plugins/blueimp/css/blueimp-gallery.min.css') }}" rel="stylesheet">
 
@@ -22,10 +22,10 @@
             min-height: 40px;
         }
 
-        .navbar-brand {
+        /*.navbar-brand {
             padding: 10px 25px !important;
             background: none !important;
-        }
+        }*/
 
         .navbar-brand img {
             max-height: 100%;
@@ -38,6 +38,22 @@
         .sombra{
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
+        .dropdown-menu .sub-menu {
+    left: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
+}
+ 
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+ 
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
     </style>
 
@@ -68,7 +84,7 @@
                     </ul> 
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                    <span class="m-r-sm text-muted welcome-message">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} ({{ Auth::user()->getRole()}}).</span>
+                    <span class="m-r-sm text-white welcome-message">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} ({{ Auth::user()->getRole()}}).</span>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -114,13 +130,13 @@
                             </div>
                         </li>
                         <li class="divider"></li>
-                        <li>
+                    <!--    <li>
                             <div class="text-center link-block">
                                 <a href="mailbox.html">
                                     <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
                                 </a>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </li>
                     <li>
@@ -138,30 +154,28 @@
             </div>
         </nav>
         </div>
-        <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        @yield('breadcrumbs')
-    </div>
-    <div class="col-lg-2">
 
-    </div>
-</div>
-        <div class="wrapper wrapper-content">
+
+        
+
+        <div class="wrapper wrapper-content no-padding">
+            @yield('content')    
+        </div>
+        
+      <!--  <div class="wrapper wrapper-content">
             <div class="container">
             
-                @yield('content')
+                
 
                 
 
             </div>
 
-        </div>
+        </div>-->
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
+
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
+                 Otra de <strong>Patache</strong> &copy; 2014-2019
             </div>
         </div>
 
