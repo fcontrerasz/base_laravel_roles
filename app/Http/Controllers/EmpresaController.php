@@ -8,13 +8,17 @@ class EmpresaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+
+        $this->middleware(['auth','verified']);
+        $this->middleware('dardealta:empresa');
        // $this->middleware('role:empresa');
     }
 
     public function index(Request $request)
     {
-    	 $request->user()->authorizeRoles(['superadmin', 'admin','empresa','auditor']);
+    	$request->user()->authorizeRoles(['superadmin', 'admin','empresa','auditor']);
         return view('empresa');
     }
+
+
 }

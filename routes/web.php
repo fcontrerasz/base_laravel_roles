@@ -2,6 +2,7 @@
 use Illuminate\Routing\UrlGenerator;
 
 Route::get('/', function () {
+    //dd(auth()->user());
     if(auth()->user()){
     	if(auth()->user()->hasRole('superadmin')){
             return redirect('/superadmin');
@@ -9,15 +10,21 @@ Route::get('/', function () {
             return redirect('/admin');
         }elseif(auth()->user()->hasRole('auditor')){
             return redirect('/auditor');
-        }elseif(auth()->user()->hasRole('contratista')){
-            return redirect('/contratista');
-        }elseif(auth()->user()->hasRole('ito')){
-            return redirect('/ito');
+        }elseif(auth()->user()->hasRole('experto')){
+            return redirect('/experto');
+        }elseif(auth()->user()->hasRole('empresa')){
+            return redirect('/empresa');
         }elseif(auth()->user()->hasRole('generico')){
             return redirect('/panel');
         } return abort(500);
    }else return view('auth.login');
 });
+
+Auth::routes(['verify' => true]);
+
+//Route::get('/formulariodealta', 'AltaController@alta')->name('frm_alta');
+
+//formulario_alta
 
 //Route::get('/admin', 'AdminController@index')->name('admin');
 
@@ -63,6 +70,9 @@ Route::get('/panel', 'GenericoController@index')->name('panel');
 Route::get('/usuariosweb/exportar', 'UsuariosWebController@exportar')->name('usuariosweb.exportar');
 //Route::get('/usuariosweb/create', 'UsuariosWebController@create')->name('usuariosweb.create');
 Route::resource('usuariosweb', 'UsuariosWebController')->middleware('auth');
+
+
+Route::resource('formulariodealta', 'AltaController')->middleware('auth');
 
 
 /*	Route::group(['prefix' => 'exports'], function() {

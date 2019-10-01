@@ -6,7 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+//class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -46,6 +47,12 @@ class User extends Authenticatable
     return $this->belongsToMany('App\Role', 'asig_roles', 'idusr', 'idrol')->withTimestamps();
     }
 
+    public function empresas()
+    {
+        //dd("1");
+        return $this->belongsToMany('App\Empresa', 'asig_empresas', 'idusr', 'idemp')->withTimestamps();
+    }
+
     public function authorizeRoles($roles)
     {
       // dd($roles);
@@ -74,6 +81,28 @@ class User extends Authenticatable
         if ($this->roles()->where('rol_nombre', $role)->first()) {
             return true;
         }
+        return false;
+    }
+    public function hasAsigEmpresa()
+    {
+       $trae_emp = $this->empresas()->get();
+        if ($trae_emp->count() > 0) {
+            return true;
+        }
+        return false;
+    }
+    public function getEmpresa()
+    {
+        return $this->empresas()->first()->idemp;
+    }
+    public function hasValidEmpresa()
+    {
+         if ($this->empresas()->first()->empresa_validada) {
+            return true;
+         }
+       /* if ($this->empresas()->where('rol_nombre', $role)->first()) {
+            return true;
+        }*/
         return false;
     }
     public function getRole()
