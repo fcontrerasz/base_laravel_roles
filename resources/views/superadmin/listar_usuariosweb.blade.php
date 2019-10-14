@@ -72,17 +72,30 @@
                                 <td>{{ $value->activado }}</td>
                                 <td>
 
+                                    {{ Form::open(array('url' => 'usuariosweb/' . $value->idusr, 'class' => 'pull-right m-xs')) }}
 
+                                        <div class="btn-group btn-group-sm" role="group">
+
+                                        {{ Form::hidden('_method', 'DELETE') }}
+
+                                        <a class="btn btn-sm btn-info" href="{{ URL::to('usuariosweb/' . $value->idusr . '/edit') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                                        {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm', 'type' => 'submit', 'onclick' => 'return confirm("¿Está seguro, no habrá vuelta atrás.?")']) }}
+
+                                        </div>
+                                    
+
+                                    {{ Form::close() }}
                            
 
                                     <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
                                     <!-- we will add this later since its a little more complicated than the other two buttons -->
 
-                                    <div class="btn-group">
+                                    
 
-                                    <a class="btn btn-sm btn-info" href="{{ URL::to('usuariosweb/' . $value->idusr . '/edit') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    
 
-                                    </div>
+                                   
 
                                 </td>
                             </tr>

@@ -7,6 +7,7 @@ use Kris\LaravelFormBuilder\FormBuilder;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PlantillaExport;
 use App\UsuariosWeb;
+use App\Role;
 use App\Forms\UsuariosWebFrm;
 use DB; 
 use Hash;
@@ -77,11 +78,12 @@ class UsuariosWebController extends Controller
 
     public function create(FormBuilder $formBuilder)
     {
+        $roles = Role::all();
         $form = $this->getForm();
-        return view('superadmin.nuevo_usuarioweb', compact('form'));
+        return view('superadmin.nuevo_usuarioweb', compact('form','roles'));
     }
 
-    public function store(FormBuilder $formBuilder)
+    public function store(FormBuilder $formBuilder, Request $request)
     {
     	
         $form = $this->getForm();
@@ -92,24 +94,23 @@ class UsuariosWebController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-       // dd($form->getFieldValues());
+        //dd($form->getFieldValues());
 
         $clave = $form->getFieldValues()["password"];
-
         $campos = $form->getFieldValues();
         $campos["password"] = bcrypt($clave);
-        $idrol = $campos["rol"];
-        unset($campos["rol"]);
-        //dd($campos);
-        $aa = UsuariosWeb::create($campos);
 
-        DB::table('ASIG_ROLES')->insert(
-            ['idrol' => $idrol, 
-             'idusr' => $aa->idusr,
-             "created_at" =>  \Carbon\Carbon::now(), # new \Datetime()
-             "updated_at" => \Carbon\Carbon::now(),  # new \Datetime()
-             ]
-    	);
+        $aux_roles = $campos["role"];
+        unset($campos["role"]);
+
+
+        $aa = UsuariosWeb::create($campos);
+        $aa->roles()->detach();
+
+        foreach ($aux_roles as $key => $value) {
+           $aa->roles()->attach(Role::where('idrol', $value)->first());
+        }
+
 
         return redirect()->route('usuariosweb.index');
     }
@@ -123,10 +124,14 @@ class UsuariosWebController extends Controller
         ->get()
         ->where('idusr', '=', $id);*/
         $model = UsuariosWeb::find($id);
-        
+        $roles = $model->roles()->get();
+        $t_roles = Role::all();
+
+        //dd($t_roles);
+     
         //dd($model);
         $form = $this->getForm($model);
-        return view('superadmin.edita_usuarioweb', compact('form','id'));
+        return view('superadmin.edita_usuarioweb', compact('form','id','roles'));
     }
 
     public function update($id)
@@ -145,26 +150,37 @@ class UsuariosWebController extends Controller
        // $form->redirectIfNotValid();
 
         $campos = $form->getFieldValues();
-        $idrol = $campos["rol"];
-        unset($campos["rol"]);
+
+        $aux_roles = $campos["role"];
+        unset($campos["role"]);
 
        // dd($campos);
 
-        DB::table('ASIG_ROLES')->where('idusr', $id)->update(
+       /* DB::table('ASIG_ROLES')->where('idusr', $id)->update(
             ['idrol' => $idrol,
              "updated_at" => \Carbon\Carbon::now()]
-        );
+        );*/
 
         //$aa = UsuariosWeb::create($campos);
 
         $model->fill($campos);
         $model->save();
+
+
+        $model->roles()->detach();
+
+        foreach ($aux_roles as $key => $value) {
+           $model->roles()->attach(Role::where('idrol', $value)->first());
+        }
+
         return redirect()->route('usuariosweb.index');
     }
 
     public function destroy($id)
     {
+     //  dd($id);
         $model = UsuariosWeb::find($id);
+        $model->roles()->detach();
         $model->delete();
         Session::put('message', 'Eliminado!');
         return redirect()->route('usuariosweb.index');

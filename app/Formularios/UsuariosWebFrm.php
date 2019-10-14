@@ -4,6 +4,7 @@ namespace App\Formularios;
 
 use Kris\LaravelFormBuilder\Form;
 use App\Role;
+use App\UsuariosWeb;
 
 
 class UsuariosWebFrm extends Form
@@ -15,16 +16,24 @@ class UsuariosWebFrm extends Form
             $mostrar = false;
             $met = 'PUT';
             $url = route('usuariosweb.update',$this->getModel()->idusr);
+            $aux_user = UsuariosWeb::find($this->getModel()->idusr);
+            $selected_roles = $aux_user->roles()->get()->pluck('idrol')->toArray();
         }else{
             $mostrar = true;
             $met = 'POST';
-            $url = route('usuariosweb.store');            
+            $url = route('usuariosweb.store'); 
+            $selected_roles = [];           
         }
 
         $this->formOptions = [
             'method' => $met,
             'url' => $url
         ];
+
+        $roles = Role::all()->pluck('rol_glosa', 'idrol')->toArray();
+
+     //   dd($roles);
+      // dd($selected_roles);
 
         $this
             ->add('name', 'text', [
@@ -38,6 +47,17 @@ class UsuariosWebFrm extends Form
             ->add('username', 'text', [
             'label' => 'Usuario',
             'rules' => 'required'
+            ])
+            ->add('role', 'choice', [
+                'label' => 'Asignar Rol',
+                'choices' => $roles,
+                'selected' => $selected_roles,
+                'choice_options' => [
+                    'wrapper' => ['class' => 'choice-wrapper'],
+                    'label_attr' => ['class' => 'label-class'],
+                ],
+                'expanded' => true,
+                'multiple' => true
             ]);
 
            // dd($mostrar);
@@ -58,7 +78,7 @@ class UsuariosWebFrm extends Form
             'label' => 'Estado',
             'rules' => 'required'
             ])
-            ->add('rol', 'entity', [
+           /* ->add('rol', 'entity', [
             'label' => 'Perfil',
             'class' => 'App\Role',
             'property' => 'rol_glosa',
@@ -68,7 +88,7 @@ class UsuariosWebFrm extends Form
             },
             'empty_value' => '=== Seleccione ===',
             'rules' => 'required'
-            ])
+            ])*/
             ->add('Enviar', 'submit', ['label' => 'Guardar', 'attr' => ['class' => 'btn-secondary btn'] ]);
     }
 }

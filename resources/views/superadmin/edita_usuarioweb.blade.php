@@ -47,11 +47,13 @@
      <div class="row">
       
          <div class="col-sm-4">{!! form_row($form->activado) !!}</div>
-        <div class="col-sm-4">{!! form_row($form->rol) !!}</div>
-        <div class="col-sm-4"></div>
 
     </div>
-    
+     <div class="row">
+                <div class="col-sm-12">{!! form_row($form->role) !!}</div>
+    </div>
+
+   
 
     {!! form_end($form) !!}
 

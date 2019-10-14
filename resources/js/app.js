@@ -30,21 +30,13 @@ Vue.use(MyPlugin)
 Vue.component('index', Index)
 
 Vue.use(VueAxios, axios)
-//axios.defaults.baseURL = `${process.env.MIX_APP_URL}/apiweb`
 axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api/records`
 
-
-/*axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest',
-    'Authorization': 'Bearer ' + Laravel.apiToken,
-};*/
-
-
+/*
 const app = new Vue({
   el: '.app',
   router
-});
+});*/
 
 router.beforeEach((to, from, next) => {
 

@@ -39,9 +39,9 @@
 
 <body class="fixed-sidebar skin-2 ">
 
-    <div id="wrapper" class="app">
+    <div id="wrapper" class="app331231">
     
-    <x-loading ref="xcargad"></x-loading> 
+    <!--<x-loading ref="xcargad"></x-loading> -->
 
     <nav class="navbar-default navbar-static-side" role="navigation">
 

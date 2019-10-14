@@ -16,7 +16,7 @@
             <div class="ibox float-e-margins m-b-none">
                 <div class="ibox-content text-center small">
 
-                    <h2><span class="text-navy">CONTRATISTAS - Administración de Empresas</span></h2>
+                    <h2><span class="text-navy">EMPRESAS - Administración de Empresas</span></h2>
 
                 </div>
             </div>
