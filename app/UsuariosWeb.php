@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Auth\Authenticatable;
+
 
 class UsuariosWeb extends Model
 {
+    use Authenticatable;
 	use Sortable;
     public $guarded = [];
     public $sortable = ['idusr'];
