@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\UsuariosWeb;
 
 class Menu extends Model
 {

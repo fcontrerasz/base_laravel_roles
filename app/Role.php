@@ -12,6 +12,6 @@ class Role extends Model
 
     public function users()
 	{
-    	return $this->belongsToMany('App\User', 'asig_roles' , 'idrol' , 'idusr')->withTimestamps();
+    	return $this->belongsToMany('App\UsuariosWeb', 'asig_roles' , 'idrol' , 'idusr')->withTimestamps();
 	}
 }

@@ -16,7 +16,7 @@ class Empresa extends Model
 
     public function users()
 	{
-    	return $this->belongsToMany('App\User', 'asig_empresas' , 'idemp' , 'idusr')->withTimestamps();
+    	return $this->belongsToMany('App\UsuariosWeb', 'asig_empresas' , 'idemp' , 'idusr')->withTimestamps();
 	}
 
 	public function hasEmpresa($role)
