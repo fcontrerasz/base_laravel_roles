@@ -114,15 +114,25 @@ class UsuariosWebController extends Controller
         return redirect()->route('usuariosweb.index');
     }
 
+
+
     public function edit($id)
     {
+       /* $model = DB::table('usuarios')
+        ->join('asig_roles', 'usuarios.idusr', '=', 'asig_roles.idrol')
+        ->get()
+        ->where('idusr', '=', $id);*/
         $model = UsuariosWeb::find($id);
+        
+        //dd($model);
         $form = $this->getForm($model);
         return view('superadmin.edita_usuarioweb', compact('form','id'));
     }
 
     public function update($id)
     {   
+        
+
     	$exists = UsuariosWeb::where('idusr', '=', $id)->exists();
         if(!$exists){
             Session::flash('error', 'Usuario no existe');
@@ -131,11 +141,19 @@ class UsuariosWebController extends Controller
 
         $model = UsuariosWeb::find($id);
         $form = $this->getForm($model);
-        $form->redirectIfNotValid();
+       
+       // $form->redirectIfNotValid();
 
         $campos = $form->getFieldValues();
         $idrol = $campos["rol"];
         unset($campos["rol"]);
+
+       // dd($campos);
+
+        DB::table('ASIG_ROLES')->where('idusr', $id)->update(
+            ['idrol' => $idrol,
+             "updated_at" => \Carbon\Carbon::now()]
+        );
 
         //$aa = UsuariosWeb::create($campos);
 

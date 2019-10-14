@@ -3,17 +3,20 @@
 namespace App\Formularios;
 
 use Kris\LaravelFormBuilder\Form;
+use App\Role;
 
 
 class UsuariosWebFrm extends Form
 {
     public function buildForm()
     {
-
+        
         if($this->getModel() && $this->getModel()->idusr){
+            $mostrar = false;
             $met = 'PUT';
             $url = route('usuariosweb.update',$this->getModel()->idusr);
         }else{
+            $mostrar = true;
             $met = 'POST';
             $url = route('usuariosweb.store');            
         }
@@ -35,12 +38,18 @@ class UsuariosWebFrm extends Form
             ->add('username', 'text', [
             'label' => 'Usuario',
             'rules' => 'required'
-            ])
-            ->add('password', 'text', [
-            'label' => 'Clave',
-            'rules' => 'required'
-            ])
-            ->add('activado', 'select', [
+            ]);
+
+           // dd($mostrar);
+
+            if($mostrar){
+                $this->add('password', 'text', [
+                'label' => 'Clave',
+                'rules' => 'required'
+                ]);
+            }
+            
+            $this->add('activado', 'select', [
             'choices' => [
                     1 => "ACTIVADO",
                     0 => "OCULTO"
@@ -49,14 +58,15 @@ class UsuariosWebFrm extends Form
             'label' => 'Estado',
             'rules' => 'required'
             ])
-            ->add('rol', 'select', [
-            'choices' => [
-                    3 => "USUARIO AUDITOR",
-                    4 => "USUARIO ITO",
-                    2 => "ADMINISTRADOR"
-            ],
+            ->add('rol', 'entity', [
+            'label' => 'Perfil',
+            'class' => 'App\Role',
+            'property' => 'rol_glosa',
+            'property_key' => 'idrol',
+            'query_builder' => function (Role $rol) {
+                return $rol;
+            },
             'empty_value' => '=== Seleccione ===',
-            'label' => 'Rol',
             'rules' => 'required'
             ])
             ->add('Enviar', 'submit', ['label' => 'Guardar', 'attr' => ['class' => 'btn-secondary btn'] ]);
