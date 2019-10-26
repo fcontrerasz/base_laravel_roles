@@ -1,6 +1,6 @@
 import 'es6-promise/auto'
 import axios from 'axios'
-import './bootstrap'
+//import './bootstrap'
 import Vue from 'vue'
 import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'

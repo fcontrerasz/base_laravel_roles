@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
 
 
-class UsuariosWeb extends Model
-{
+class UsuariosWeb extends Model  implements AuthenticatableContract {
+
     use Authenticatable;
 	use Sortable;
     public $guarded = [];
