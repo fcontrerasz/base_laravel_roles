@@ -91,6 +91,6 @@ class UsuariosWebFrm extends Form
             'empty_value' => '=== Seleccione ===',
             'rules' => 'required'
             ])*/
-            ->add('Enviar', 'submit', ['label' => 'Guardar', 'attr' => ['class' => 'btn-secondary btn'] ]);
+            ->add('Enviar', 'submit', ['label' => 'Guardar', 'attr' => ['class' => 'btn btn-primary'] ]);
     }
 }
