@@ -70,7 +70,21 @@ Breadcrumbs::for('usuarios.clave', function ($trail) {
     $trail->push('Cambio de Clave', route('usuarios.index'));
 });
 
+// Admin > Empresas
+Breadcrumbs::for('empresas.index', function ($trail) {
+    $trail->parent('inicio');
+    $trail->push('Listar Empresas', route('empresas.index'));
+});
 
+Breadcrumbs::for('empresas.create', function ($trail) {
+    $trail->parent('empresas.index');
+    $trail->push('Nueva Empresa', route('empresas.create'));
+});
+
+Breadcrumbs::for('empresas.edit', function ($trail) {
+    $trail->parent('empresas.index');
+    $trail->push('Editar Empresa', route('empresas.create'));
+});
 
 
 // Admin > Usuarios > Crear

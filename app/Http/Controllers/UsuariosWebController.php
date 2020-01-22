@@ -39,7 +39,7 @@ class UsuariosWebController extends Controller
     {
 
         $nerds = new \App\UsuariosWeb;
-        $nerds = $nerds->whereNotIn('username', ['superadmin', 'experto', 'empresa', 'generico', 'admin']);
+        $nerds = $nerds->whereNotIn('username', ['superadmin', 'admin']);
         $nerds = $nerds->sortable()->paginate(20);
 
         return view('registros.usuarios.listar_usuariosweb', compact('nerds','report'));

@@ -24,6 +24,18 @@
     
     <link href="{{ asset('css/plugins/blueimp/css/blueimp-gallery.min.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+    
+    <link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
 
 
     <style>
@@ -32,14 +44,27 @@
             background: none !important;
         }
 
+        .back-to-top {
+    cursor: pointer;
+    position: fixed;
+    z-index: 99991;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}
+
     </style>
+
+        <style> .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single, .select2-selection .select2-selection--single { border: 1px solid #d2d6de; border-radius: 0; padding: 3px 12px; height: 34px; } .select2-container .select2-selection--single .select2-selection__rendered { padding-right: 10px; } .select2-container .select2-selection--single .select2-selection__rendered { padding-left: 0; } .select2-container--default .select2-selection--single .select2-selection__arrow b { margin-top: 0; } .select2-container--default .select2-selection--single .select2-selection__arrow { height: 28px; right: 3px; } </style>
 
 </head>
 
 
-<body class="fixed-sidebar skin-2 ">
+<body class="fixed-sidebar skin-3 ">
 
-    <div id="wrapper" class="app331231">
+      <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" ><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+    <div id="wrapper" >
     
     <!--<x-loading ref="xcargad"></x-loading> -->
 
@@ -152,7 +177,7 @@
 
                 </div>
             </div>
-            <div class="wrapper wrapper-content  animated fadeInRight dataTables_wrapper">
+            <div class="wrapper wrapper-content  animated fadeIn no-padding">
               @yield('content')
 
             </div>
@@ -166,21 +191,59 @@
         </div>
     
 </div>
-        <script src="{{asset('js/app.js')}}" ></script>
+        <!-- <script src="{{asset('js/app.js')}}" ></script> -->
     
+    
+      <!-- jQuery UI -->
+    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script> 
 
     <!-- princiales scripts -->
-    <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+    
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
     <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-
+    <script src="{{ asset('js/plugins/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/select2/i18n/es.js') }}"></script>
+        
     <!-- base javascript -->
     <script src="{{ asset('js/patache.js') }}"></script>
     <script src="{{ asset('js/plugins/pace/pace.min.js') }}"></script>
 
-    <!-- jQuery UI -->
-    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+        <!-- Jasny -->
+    <script src="{{ asset('js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
+
+
+     
+
+    <script>
+        
+        $.fn.select2.defaults.set('language', 'es');
+
+              $(document).ready(function(){
+                //alert(2222);
+     $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 100);
+            return false;
+        });
+        
+        $('#back-to-top').tooltip('show');
+
+});
+
+
+
+    </script>
 
     
 

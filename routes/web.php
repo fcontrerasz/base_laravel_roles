@@ -40,16 +40,22 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/cambiarpass','UsuariosWebController@cambiarClave')->name('changePassword');
     Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin');
     Route::get('/admin', 'AdminController@index')->name('admin');
+    Route::get('/formulariodealta', 'AltaController@alta')->name('frm_alta');
+    Route::resource('formulariodealta', 'AltaController')->middleware('auth');
 }); 
 
 
 Route::group(['middleware' => 'role:admin|superadmin'],function(){
     Route::resource('admin/usuarios', 'UsuariosWebController');
+    Route::resource('admin/empresas', 'EmpresasWebController');
     Route::get('admin/exportar_usuarios', 'UsuariosWebController@exportar')->name('usuarios.exportar');
+    Route::get('admin/exportar_empresas', 'EmpresasWebController@exportar')->name('empresas.exportar');
     Route::get('dinamico_usuarios/traer', 'UsuariosWebController@postSearch')->name('usuarios.fetch');
     Route::get('admin/usuarios/clave/{id}', 'UsuariosWebController@clave')->name('usuarios.clave');
     Route::post('/actualizaclave/{id}','UsuariosWebController@actualizaclave')->name('actualizaclave');
 });
+
+
 
 
 /* ** testing * */

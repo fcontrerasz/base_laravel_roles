@@ -2,25 +2,17 @@
 
 @section('breadcrumbs')
     <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
-    {{ Breadcrumbs::render('usuariosweb.create') }}
+        {{ Breadcrumbs::render('usuarios.edit') }}
 @endsection
 
 @section('content')
 
 
-    <div class="row border-bottom white-bg">
-        <div class="col-md-12">
+    <div class="row border-bottom ">
+        <div class="col-md-12 p-sm">
 
             <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Nuevo Usuario</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                           
-                        </div>
-                    </div>
+
                     <div class="ibox-content">
                         
                         <div class="row m-b-sm m-t-sm">
@@ -37,23 +29,23 @@
     </div>
     @endif
 
-                            {!! form_start($form) !!}
+{!! form_start($form) !!}
 
  <div class="row">
-         <div class="col-sm-4">{!! form_row($form->name) !!}</div>
-        <div class="col-sm-4">{!! form_row($form->email) !!}</div>
-         <div class="col-sm-4">{!! form_row($form->username) !!}</div>
+         <div class="col-sm-4">{!! form_row($form->rut) !!}</div>
+        <div class="col-sm-4">{!! form_row($form->nombre) !!}</div>
+         <div class="col-sm-4">{!! form_row($form->razon_social) !!}</div>
     </div>
      <div class="row">
-        <div class="col-sm-4">{!! form_row($form->password) !!}</div>
+        <div class="col-sm-4">{!! form_row($form->idusr) !!}</div>
+        <div class="col-sm-4">{!! form_row($form->email) !!}</div>
          <div class="col-sm-4">{!! form_row($form->activado) !!}</div>
-    </div>
-    <div class="row">
-                <div class="col-sm-12">{!! form_row($form->role) !!}</div>
+
     </div>
     
 
     {!! form_end($form) !!}
+
 
                             </div>
 
