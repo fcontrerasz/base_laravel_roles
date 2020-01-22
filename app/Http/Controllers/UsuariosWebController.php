@@ -28,7 +28,8 @@ class UsuariosWebController extends Controller
         return $this->formBuilder->create(\App\Formularios\UsuariosWebFrm::class, [
             'model' => $post,
             'data' => [
-                'admin' => false
+                'admin' => false,
+                'rol' => Auth::user()->getRole()
             ]
         ]);
 
@@ -36,7 +37,6 @@ class UsuariosWebController extends Controller
 
     public function index()
     {
-       // dd("1");
 
         $nerds = new \App\UsuariosWeb;
         $nerds = $nerds->whereNotIn('username', ['superadmin', 'experto', 'empresa', 'generico', 'admin']);
@@ -107,6 +107,7 @@ class UsuariosWebController extends Controller
 
     public function create(FormBuilder $formBuilder)
     {
+    	//dd(Auth::user()->getRole());
         $roles = Role::all();
         $form = $this->getForm();
         return view('registros.usuarios.nuevo_usuarioweb', compact('form','roles'));

@@ -2704,7 +2704,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.vld-overlay.is-full-page {\n    /*z-index: 1051 !important;*/\n}\n.vld-overlay .vld-background{\n    background: #1c1c21;\n    opacity: 0.7;\n}\n", ""]);
+exports.push([module.i, "\n.vld-overlay.is-full-page {\r\n    /*z-index: 1051 !important;*/\n}\n.vld-overlay .vld-background{\r\n    background: #1c1c21;\r\n    opacity: 0.7;\n}\r\n", ""]);
 
 // exports
 
@@ -21278,7 +21278,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('x-usuario', __webpack_requ
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(_demo_js__WEBPACK_IMPORTED_MODULE_9__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('index', _Index__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_3___default.a, axios__WEBPACK_IMPORTED_MODULE_1___default.a);
-axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "".concat("http://localhost:8000", "/api/records");
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "".concat(Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).MIX_APP_URL, "/api/records");
 /*
 const app = new Vue({
   el: '.app',
@@ -22677,8 +22677,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\pend\Proyectos\Personal\Aguas Andinas\App\base_laravel_roles\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\pend\Proyectos\Personal\Aguas Andinas\App\base_laravel_roles\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\fcont\Desktop\laravel-roles\version2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\fcont\Desktop\laravel-roles\version2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

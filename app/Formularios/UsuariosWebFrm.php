@@ -30,8 +30,10 @@ class UsuariosWebFrm extends Form
             'url' => $url
         ];
 
-        $roles = Role::whereIn('idrol', [2,4,8])->pluck('rol_glosa', 'idrol')->toArray();
-
+        $rol = $this->getData('rol');
+       // dd($rol);
+        if($rol == "admin") $roles = Role::whereIn('idrol', [2,4,8])->pluck('rol_glosa', 'idrol')->toArray();
+        if($rol == "superadmin") $roles = Role::pluck('rol_glosa', 'idrol')->toArray();
      //   dd($roles);
       // dd($selected_roles);
 

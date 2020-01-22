@@ -1118,6 +1118,11 @@ ul.nav-second-level {
 .fixed-sidebar.mini-navbar .nav-second-level li .nav-third-level li a {
   padding-left: 62px;
 }
+
+.nav-third-level li{
+  background-color: red;
+}
+
 .nav-second-level li:last-child {
   padding-bottom: 10px;
 }
