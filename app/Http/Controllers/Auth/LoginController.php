@@ -42,13 +42,6 @@ class LoginController extends Controller
         }elseif(auth()->user()->hasRole('experto')){
             return redirect('/experto');
         }elseif(auth()->user()->hasRole('generico')){
-            /*if(auth()->user()->hasRole('istas')){
-                    return redirect('/istas');
-            }elseif(auth()->user()->hasRole('cphs')){
-                    return redirect('/cphs');
-            }else{
-                    
-            }*/
             return redirect('/panel');
         } return redirect('/inicio');
     }

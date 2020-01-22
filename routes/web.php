@@ -28,6 +28,13 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/inicio', 'HomeController@index')->name('home');
 
+Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin');
+Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/auditor', 'AuditorController@index')->name('auditor');
+Route::get('/empresa', 'EmpresaController@index')->name('empresa');
+Route::get('/experto', 'ExpertoController@index')->name('experto');
+Route::get('/panel', 'GenericoController@index')->name('panel');
+
 Route::group(['middleware'=>'auth'],function(){ 
     Route::get('/cambiarpass','UsuariosWebController@claveForm');
     Route::post('/cambiarpass','UsuariosWebController@cambiarClave')->name('changePassword');
