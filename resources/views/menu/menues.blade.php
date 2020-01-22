@@ -1,6 +1,6 @@
 @if ($item['submenu'] == [])
     <li>
-        <a href="{{ url($item['nombre']) }}">{{ $item['nombre'] }} </a>
+        <a href="{{ url($item['slug']) }}">{{ $item['nombre'] }} </a>
     </li>
 @else
 
