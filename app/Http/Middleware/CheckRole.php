@@ -15,8 +15,9 @@ class CheckRole
      */
     public function handle($request, Closure $next, $role)
     {
-        if (! $request->user()->hasRole($role)) {
-            abort(401, 'No está permitida esta zona.');
+        //dd(explode("|", $role));
+        if (! $request->user()->hasAnyRole(explode("|", $role))) {
+            abort(401, 'No está permitida esta zona.'.$role);
         }
         return $next($request);
     }

@@ -15,13 +15,13 @@ class UsuariosWebFrm extends Form
         if($this->getModel() && $this->getModel()->idusr){
             $mostrar = false;
             $met = 'PUT';
-            $url = route('usuariosweb.update',$this->getModel()->idusr);
+            $url = route('usuarios.update',$this->getModel()->idusr);
             $aux_user = UsuariosWeb::find($this->getModel()->idusr);
             $selected_roles = $aux_user->roles()->get()->pluck('idrol')->toArray();
         }else{
             $mostrar = true;
             $met = 'POST';
-            $url = route('usuariosweb.store'); 
+            $url = route('usuarios.store'); 
             $selected_roles = [];           
         }
 
@@ -30,7 +30,7 @@ class UsuariosWebFrm extends Form
             'url' => $url
         ];
 
-        $roles = Role::all()->pluck('rol_glosa', 'idrol')->toArray();
+        $roles = Role::whereIn('idrol', [2,4,8])->pluck('rol_glosa', 'idrol')->toArray();
 
      //   dd($roles);
       // dd($selected_roles);

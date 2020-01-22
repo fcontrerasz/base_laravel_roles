@@ -17,7 +17,8 @@ class CreateEmpresasTable extends Migration
     public function up()
     {
         Schema::create('empresas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+             $table->engine = 'InnoDB';
+            $table->bigIncrements('idemp');
             $table->string('rut', 191);
             $table->string('nombre', 191);
             $table->string('email', 191);
@@ -41,6 +42,6 @@ class CreateEmpresasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empresas');
+      //  Schema::dropIfExists('empresas');
     }
 }

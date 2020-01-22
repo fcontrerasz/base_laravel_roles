@@ -1,14 +1,17 @@
 @if ($item['submenu'] == [])
     <li>
-        <a href="{{ url($item['slug']) }}">{{ $item['nombre'] }} </a>
+        <a href="{{ url($item['nombre']) }}">{{ $item['nombre'] }} </a>
     </li>
 @else
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $item['nombre'] }} <span class="caret"></span></a>
-        <ul class="dropdown-menu sub-menu">
+
+    <li>
+    <a href="#" aria-expanded="false"><span class="nav-level">{{ $item['nombre'] }}</span>
+    <span class="fa arrow"></span></a>
+    <ul class="nav nav-third-level collapse">
             @foreach ($item['submenu'] as $submenu)
                 @if ($submenu['submenu'] == [])
                     <li><a href="{{ url($submenu['slug']) }}">{{ $submenu['nombre'] }} </a></li>
+                    
                 @else
                     @include('menu.menues', [ 'item' => $submenu ])
                 @endif

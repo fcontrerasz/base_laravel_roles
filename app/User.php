@@ -107,7 +107,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
     public function getRole()
-    {
+    {   
+        dd($this->roles());
         return $this->roles()->first()->rol_nombre;
     }
 

@@ -14,6 +14,7 @@ class CreateMenusTabla extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
+             $table->engine = 'InnoDB';
             $table->increments('idmn');
             $table->string('nombre', 150);
             $table->string('slug', 150)->unique();

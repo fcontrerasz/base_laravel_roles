@@ -3,7 +3,7 @@
 // Home
 Breadcrumbs::for('inicio', function ($trail) {
 
-    	if(auth()->user()->hasRole('superadmin')){
+        if(auth()->user()->hasRole('superadmin')){
             $trail->push('Inicio', route('superadmin'));
         }elseif(auth()->user()->hasRole('admin')){
             $trail->push('Inicio', route('admin'));
@@ -13,6 +13,8 @@ Breadcrumbs::for('inicio', function ($trail) {
             $trail->push('Inicio', route('contratista'));
         }elseif(auth()->user()->hasRole('ito')){
             $trail->push('Inicio', route('ito'));
+        }elseif(auth()->user()->hasRole('comite')){
+            $trail->push('Inicio', route('comites'));
         }elseif(auth()->user()->hasRole('generico')){
             $trail->push('Inicio', route('generico'));
         } 
@@ -33,23 +35,42 @@ Breadcrumbs::for('admin', function ($trail) {
     $trail->parent('inicio');
 });
 
+Breadcrumbs::for('comites', function ($trail) {
+    $trail->parent('inicio');
+    $trail->push('Comites', route('comites'));
+});
+
+Breadcrumbs::for('reunion', function ($trail) {
+    $trail->parent('inicio');
+    $trail->push('Reunion', route('reunion.index'));
+});
+
+
+
+
 
 // Admin > Usuarios
-Breadcrumbs::for('usuariosweb.index', function ($trail) {
+Breadcrumbs::for('usuarios.index', function ($trail) {
     $trail->parent('inicio');
-    $trail->push('Listar Usuarios', route('usuariosweb.index'));
+    $trail->push('Listar Usuarios', route('usuarios.index'));
+});
+
+Breadcrumbs::for('usuarios.create', function ($trail) {
+    $trail->parent('usuarios.index');
+    $trail->push('Nuevo Usuario', route('usuarios.create'));
+});
+
+Breadcrumbs::for('usuarios.edit', function ($trail) {
+    $trail->parent('usuarios.index');
+    $trail->push('Editar Usuario', route('usuarios.create'));
+});
+
+Breadcrumbs::for('usuarios.clave', function ($trail) {
+    $trail->parent('usuarios.index');
+    $trail->push('Cambio de Clave', route('usuarios.index'));
 });
 
 
-Breadcrumbs::for('usuariosweb.create', function ($trail) {
-    $trail->parent('usuariosweb.index');
-    $trail->push('Nuevo Usuario', route('usuariosweb.create'));
-});
-
-Breadcrumbs::for('usuariosweb.edit', function ($trail) {
-    $trail->parent('usuariosweb.index');
-    $trail->push('Editar Usuario', route('usuariosweb.create'));
-});
 
 
 // Admin > Usuarios > Crear

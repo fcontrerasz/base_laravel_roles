@@ -36,29 +36,58 @@ class UsuariosWebController extends Controller
 
     public function index()
     {
-
+       // dd("1");
 
         $nerds = new \App\UsuariosWeb;
-        $nerds = $nerds->whereNotIn('username', ['superadmin', 'experto', 'empresa', 'generico']);
+        $nerds = $nerds->whereNotIn('username', ['superadmin', 'experto', 'empresa', 'generico', 'admin']);
         $nerds = $nerds->sortable()->paginate(20);
 
-        return view('superadmin.listar_usuariosweb', compact('nerds','report'));
+        return view('registros.usuarios.listar_usuariosweb', compact('nerds','report'));
 
+    }
+
+    public function show(){
+        die(33);
+    }
+
+    public function clave($id){
+
+        return view('registros.usuarios.cambiaclave', compact('id'));
     }
 
     public function claveForm(){
         return view('auth.changepass');
     }
 
+     public function actualizaclave($id, Request $request){
+
+        $exists = UsuariosWeb::where('idusr', '=', $id)->exists();
+        if(!$exists){
+            return redirect()->back()->with("error","Error de usuario.");
+        }
+
+        $model = UsuariosWeb::find($id);
+
+        $validatedData = $request->validate([
+            'new-password' => 'required|string|min:6',
+        ]);
+
+        //Change Password
+        //$user = Auth::user();
+        $model->password = bcrypt($request->get('new-password'));
+        $model->save();
+
+        return redirect()->route('usuarios.index');
+
+    }
+
     public function cambiarClave(Request $request){
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-            // The passwords matches
             return redirect()->back()->with("error","Clave actual no es correcta.");
         }
 
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
-            //Current password and new password are same
             return redirect()->back()->with("error","Nueva clave no puede ser igual a la existente.");
         }
 
@@ -80,7 +109,7 @@ class UsuariosWebController extends Controller
     {
         $roles = Role::all();
         $form = $this->getForm();
-        return view('superadmin.nuevo_usuarioweb', compact('form','roles'));
+        return view('registros.usuarios.nuevo_usuarioweb', compact('form','roles'));
     }
 
     public function store(FormBuilder $formBuilder, Request $request)
@@ -103,8 +132,21 @@ class UsuariosWebController extends Controller
         $aux_roles = $campos["role"];
         unset($campos["role"]);
 
+        
 
-        $aa = UsuariosWeb::create($campos);
+        try {
+        
+            $aa = UsuariosWeb::create($campos);
+        
+        } catch (\Illuminate\Database\QueryException $exception) {
+            
+            $errorInfo = $exception->errorInfo;
+
+            dd($errorInfo);
+        }
+
+       // dd($campos);
+
         $aa->roles()->detach();
 
         foreach ($aux_roles as $key => $value) {
@@ -112,7 +154,7 @@ class UsuariosWebController extends Controller
         }
 
 
-        return redirect()->route('usuariosweb.index');
+        return redirect()->route('usuarios.index');
     }
 
 
@@ -131,7 +173,7 @@ class UsuariosWebController extends Controller
      
         //dd($model);
         $form = $this->getForm($model);
-        return view('superadmin.edita_usuarioweb', compact('form','id','roles'));
+        return view('registros.usuarios.edita_usuarioweb', compact('form','id','roles'));
     }
 
     public function update($id)
@@ -173,7 +215,7 @@ class UsuariosWebController extends Controller
            $model->roles()->attach(Role::where('idrol', $value)->first());
         }
 
-        return redirect()->route('usuariosweb.index');
+        return redirect()->route('usuarios.index');
     }
 
     public function destroy($id)
@@ -183,15 +225,27 @@ class UsuariosWebController extends Controller
         $model->roles()->detach();
         $model->delete();
         Session::put('message', 'Eliminado!');
-        return redirect()->route('usuariosweb.index');
+        return redirect()->route('usuarios.index');
     }
 
     public function exportar()
     {
+       // dd("HOla");
         return Excel::download(new PlantillaExport(), 'plantilla_123123_.xlsx');
     }
 
+    public function postSearch(Request $request)
+   {
 
+        $term = $request->term ?: '';
+        $tags = UsuariosWeb::where('name', 'like', $term.'%')->pluck('name', 'idusr');
+        $valid_tags = [];
+        foreach ($tags as $id => $tag) {
+            $valid_tags[] = ['id' => $id, 'text' => $tag];
+        }
+        return \Response::json($valid_tags);
+
+   }
 
 
   
