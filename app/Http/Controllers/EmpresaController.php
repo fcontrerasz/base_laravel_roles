@@ -11,7 +11,6 @@ class EmpresaController extends Controller
 
         $this->middleware(['auth','verified']);
         $this->middleware('dardealta:empresa');
-       // $this->middleware('role:empresa');
     }
 
     public function index(Request $request)

@@ -16,23 +16,17 @@
             <form method="POST" action="{{ route('login') }}"  >
                 @csrf
 
+                
+
                 <div class="form-group">
                     <input id="email" type="text" placeholder="Correo" autocomplete="off" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                
                 </div>
                 <div class="form-group">
                     <input id="password" type="password" placeholder="Clave" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                
                 </div>
                 <div class="form-group row hide">
                             <div class="col-md-12">
@@ -60,6 +54,26 @@
                                 @endif
                             </div>
                         </div>
+
+                        @if (session()->get( 'warning' ))
+                        <div class="alert alert-warning alert-dismissable">
+                                {{ session()->get( 'warning' ) }}
+                            </div>
+                        @endif
+
+                        @if ($errors->has('email'))
+
+                         <div class="alert alert-warning alert-dismissable">
+                                {{ $errors->first('email') }}
+                            </div>
+                          @endif
+                        
+
+                        @if ($errors->has('password'))
+                         <div class="alert alert-warning alert-dismissable">
+                                {{ $errors->first('password') }}
+                            </div>
+                                @endif
 
                                 
             </form>

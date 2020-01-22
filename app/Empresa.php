@@ -19,9 +19,5 @@ class Empresa extends Model
     	return $this->belongsToMany('App\UsuariosWeb', 'asig_empresas' , 'idemp' , 'idusr')->withTimestamps();
 	}
 
-	public function hasEmpresa($role)
-    {
-        dd(1);
-        return false;
-    }
+	
 }

@@ -21,9 +21,10 @@ class CreateEmpresasTable extends Migration
             $table->bigIncrements('idemp');
             $table->string('rut', 191);
             $table->string('nombre', 191);
+            $table->string('razon_social', 191);
             $table->string('email', 191);
-             $table->timestamp('empresa_validada')->nullable()->default(null);
-             $table->integer('activado')->nullable()->default(null);
+            $table->timestamp('empresa_validada')->nullable()->default(null);
+            $table->integer('activado')->nullable()->default(null);
             $table->nullableTimestamps();
         });
 
