@@ -44,20 +44,17 @@ class EmpresaFrm extends Form
             'rules' => 'required'
             ])
             ->add('nombre', 'text', [
-            'label' => 'Empresa',
+            'label' => 'Nombre Empresa',
             'rules' => 'required'
             ])
             ->add('razon_social', 'text', [
             'label' => 'Razón Social',
             'rules' => 'required'
             ])
-
             ->add('email', 'text', [
             'label' => 'Correo',
-            'rules' => 'required|email|unique:usuarios,email'
+            'rules' => 'required|email|unique:empresas,email'
             ])
-
-         
             ->add('activado', 'select', [
             'choices' => [
                     1 => "ACTIVADO",
@@ -67,7 +64,6 @@ class EmpresaFrm extends Form
             'label' => 'Estado',
             'rules' => 'required'
             ])
-
             ->add('idusr', 'select2_entity', [
             'label' => 'Cuenta Asociada',
             'selected' => $selected_asiguser,
