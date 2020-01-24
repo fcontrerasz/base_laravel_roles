@@ -48,8 +48,11 @@ Route::group(['middleware'=>'auth'],function(){
 Route::group(['middleware' => 'role:admin|superadmin'],function(){
     Route::resource('admin/usuarios', 'UsuariosWebController');
     Route::resource('admin/empresas', 'EmpresasWebController');
+    Route::resource('admin/campos', 'CamposController');
+    //Route::get('admin/create-table', 'TableController@operate');
     Route::get('admin/exportar_usuarios', 'UsuariosWebController@exportar')->name('usuarios.exportar');
     Route::get('admin/exportar_empresas', 'EmpresasWebController@exportar')->name('empresas.exportar');
+    Route::get('admin/exportar_campos', 'EmpresasWebController@exportar')->name('campos.exportar');
     Route::get('dinamico_usuarios/traer', 'UsuariosWebController@postSearch')->name('usuarios.fetch');
     Route::get('admin/usuarios/clave/{id}', 'UsuariosWebController@clave')->name('usuarios.clave');
     Route::post('/actualizaclave/{id}','UsuariosWebController@actualizaclave')->name('actualizaclave');

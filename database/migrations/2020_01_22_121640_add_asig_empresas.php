@@ -55,5 +55,7 @@ class AddAsigEmpresas extends Migration
         Schema::dropIfExists('asig_empresas');
         Schema::dropIfExists('empresas');
         Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('campos');
+        Schema::dropIfExists('tipos_campos');
     }
 }

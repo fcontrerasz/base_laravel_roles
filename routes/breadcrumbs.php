@@ -87,6 +87,22 @@ Breadcrumbs::for('empresas.edit', function ($trail) {
 });
 
 
+// Admin > Capos
+Breadcrumbs::for('campos.index', function ($trail) {
+    $trail->parent('inicio');
+    $trail->push('Listar Campos', route('campos.index'));
+});
+
+Breadcrumbs::for('campos.create', function ($trail) {
+    $trail->parent('campos.index');
+    $trail->push('Nuevo Campo', route('campos.create'));
+});
+
+Breadcrumbs::for('campos.edit', function ($trail) {
+    $trail->parent('campos.index');
+    $trail->push('Editar Campo', route('campos.create'));
+});
+
 // Admin > Usuarios > Crear
 
 /*
