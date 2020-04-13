@@ -23,6 +23,11 @@ Route::get('/', function () {
 
 //Auth::routes(['verify' => true]);
 
+
+//ChartController
+
+//Route::get('graficos', 'ChartController@index')->name('chart.index');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -43,6 +48,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/formulariodealta', 'AltaController@alta')->name('frm_alta');
     Route::resource('formulariodealta', 'AltaController')->middleware('auth');
 }); 
+
+Route::group(['middleware' => 'role:auditor|admin|superadmin'],function(){
+    Route::get('auditor/informe', 'ChartController@index')->name('chart.index');
+});
 
 
 Route::group(['middleware' => 'role:admin|superadmin'],function(){

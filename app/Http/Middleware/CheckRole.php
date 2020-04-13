@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class CheckRole
 {
@@ -15,7 +16,9 @@ class CheckRole
      */
     public function handle($request, Closure $next, $role)
     {
-        //dd(explode("|", $role));
+        if (!Auth::check())
+            return redirect('login');
+
         if (! $request->user()->hasAnyRole(explode("|", $role))) {
             abort(401, 'No está permitida esta zona.'.$role);
         }

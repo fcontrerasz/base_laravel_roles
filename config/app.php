@@ -164,6 +164,7 @@ return [
         Laraveles\Spanish\SpanishServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Charts' => ConsoleTVs\Charts\Classes\ChartJs\Chart::class,
 
     ],
 
