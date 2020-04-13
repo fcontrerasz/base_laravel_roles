@@ -7,8 +7,11 @@ use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
 
+//Añadimos la clase JWTSubject 
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UsuariosWeb extends Model  implements AuthenticatableContract {
+
+class UsuariosWeb extends Model  implements AuthenticatableContract, JWTSubject {
 
     use Authenticatable;
 	use Sortable;
@@ -84,5 +87,13 @@ class UsuariosWeb extends Model  implements AuthenticatableContract {
     public function getRole()
     {
         return $this->roles()->first()->rol_nombre;
+    }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

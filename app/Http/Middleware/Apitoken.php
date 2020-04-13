@@ -15,8 +15,9 @@ class Apitoken
      */
     public function handle($request, Closure $next)
     {
-        $token = $request->header('APP_KEY');
-        if($token != '123456') return response()->json(['mensaje' => 'Token no encontrada'], 401);
+        /*esta es una manera manual de crear una api genérica, no permite controlar usuarios*/
+        //$token = $request->header('APP_KEY');
+        //if($token != '123456') return response()->json(['mensaje' => 'Token no encontrada'], 401);
         return $next($request);
     }
 }

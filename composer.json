@@ -22,6 +22,7 @@
         "maatwebsite/excel": "^3.1",
         "mevdschee/php-crud-api": "^2.5",
         "symfony/psr-http-message-bridge": "^1.2",
+        "tymon/jwt-auth": "dev-develop",
         "zendframework/zend-diactoros": "^2.1"
     },
     "require-dev": {

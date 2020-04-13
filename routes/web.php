@@ -27,6 +27,8 @@ Route::get('/', function () {
 //ChartController
 
 //Route::get('graficos', 'ChartController@index')->name('chart.index');
+Route::post('api-token', 'AuthController@authenticate');
+
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

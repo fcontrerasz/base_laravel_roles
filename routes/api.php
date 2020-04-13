@@ -4,6 +4,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config;
 
+
+Route::group([
+    'middleware' => 'jwt.verify'
+], function ($router) {
+
 Route::any('/{any}', function (ServerRequestInterface $request) {
 	//$container = $app->getContainer();
     $config = new Config([
@@ -30,3 +35,5 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     $response = $api->handle($request);
     return $response;
 })->where('any', '.*');
+
+});

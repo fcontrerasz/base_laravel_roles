@@ -1,0 +1,2 @@
+/* PARA INICIAR EL LOGIN REMOTO API */
+php artisan jwt:secret
