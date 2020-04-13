@@ -1,2 +1,11 @@
 /* PARA INICIAR EL LOGIN REMOTO API */
 php artisan jwt:secret
+
+para logearse
+POST
+http://localhost:8000/api-token
+password=12345678&email=admin%40reportes.cl
+
+
+/* con el token puedo pedir */
+http://localhost:8000/api/records/usuarios?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXRva2VuIiwiaWF0IjoxNTg2NzQ2NDAwLCJleHAiOjE1ODY3NTAwMDAsIm5iZiI6MTU4Njc0NjQwMCwianRpIjoiREtGRzkxcWdURzhaTTNWOSIsInN1YiI6MiwicHJ2IjoiOWE2ZjA4MWJmOTczYzg3ODE1ZmRkYjJlNDdlM2YzZWQ2NzNhZTU2NCJ9.TyMSh4Fc4GFJMRImJrjAf_172G6zi_8VJp8fiZwCdN4
