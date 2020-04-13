@@ -17,10 +17,9 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
         'database' => env('DB_DATABASE', 'forge'),
         'address' => env('DB_HOST', '127.0.0.1'),
         'debug' => true,
-        'middlewares' => 'jwtAuth,authorization',
+        'middlewares' => 'authorization',
         'openApiBase' => '{"info":{"title":"PHP-CRUD-API","version":"1.0.0"}}',
         'basePath' => '/api',
-        'jwtAuth.secret' =>"-----BEGIN CERTIFICATE---- my app certificate -----END CERTIFICATE-----",
         'authorization.tableHandler' => function ($operation, $tableName) {
     		return $tableName != 'usuarios222';
 		},
