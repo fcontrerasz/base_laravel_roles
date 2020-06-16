@@ -1,3 +1,25 @@
+PASO A PASO
+
+git clone https://github.com/fcontrerasz/base_laravel_roles.git XXXXXX
+cd XXXXXX
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+
+/* conectar BD y luego */
+php artisan migrate:refresh --seed
+
+accesos, clave 12345678
+superadmin@reportes.cl
+admin@reportes.cl
+auditor@reportes.cl
+
+
+
+
+
+
 /* PARA INICIAR EL LOGIN REMOTO API */
 php artisan jwt:secret
 
