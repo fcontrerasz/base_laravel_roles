@@ -20,15 +20,15 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
         'middlewares' => 'authorization',
         'openApiBase' => '{"info":{"title":"PHP-CRUD-API","version":"1.0.0"}}',
         'basePath' => '/api',
-        'authorization.tableHandler' => function ($operation, $tableName) {
-    		return $tableName != 'usuarios222';
-		},
+       /* 'authorization.tableHandler' => function ($operation, $tableName) {
+    		return $tableName != 'usuarios';
+		},*/
 		'authorization.columnHandler' => function ($operation, $tableName, $columnName) {
 		    return !($tableName == 'usuarios' && $columnName == 'password');
 		},
-		'authorization.recordHandler' => function ($operation, $tableName) {
-  	 		return ($tableName == 'users') ? 'filter=username,neq,admin' : '';
-		},
+		/*'authorization.recordHandler' => function ($operation, $tableName) {
+  	 		return ($tableName == 'usuarios') ? 'filter=username,neq,admin' : '';
+		},*/
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
