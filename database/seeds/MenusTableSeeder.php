@@ -111,6 +111,15 @@ class MenusTableSeeder extends Seeder
             'permisos' => '{ "roles": ["superadmin","admin"] }'
         ]);
 
+        factory(Menu::class)->create([
+            'nombre' => 'Campos',
+            'slug' => 'admin/campos',
+            'padre' => 0,
+            'orden' => 2,
+            'activo' => 1,
+            'permisos' => '{ "roles": ["superadmin","admin"] }'
+        ]);
+
         
 
       /*  factory(Menu::class)->create([

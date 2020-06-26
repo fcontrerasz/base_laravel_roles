@@ -2,7 +2,6 @@
 use Illuminate\Routing\UrlGenerator;
 
 
-
 Route::get('/', function () {
     if(auth()->user()){
         if(auth()->user()->hasRole('superadmin')){

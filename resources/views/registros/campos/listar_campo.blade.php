@@ -34,7 +34,6 @@
                                 <td>@sortablelink('campo_titulo','TITULO')</td>
                                 <td>@sortablelink('campo_descripcion','DESCRIPCION')</td>
                                 <td>@sortablelink('created_at','CREACION')</td>
-                                <td>ACTIVO</td>
                                 <td style="width: 50px">ACCION</td>
                             </tr>
                         </thead>
@@ -50,7 +49,7 @@
 
                                     {{ Form::open(array('url' => 'admin/campos/' . $value->idcamp, 'class' => 'pull-right m-xs btn_delete_user')) }}
 
-                                        <div class="btn-group btn-group-md" role="group">
+                                        <div class="btn-group btn-group-md btn-group-table" role="group">
 
                                         {{ Form::hidden('_method', 'DELETE') }}
 

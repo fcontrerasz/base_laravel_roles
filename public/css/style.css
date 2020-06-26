@@ -8373,3 +8373,7 @@ body.md-skin {
     margin: 0;
   }
 }
+
+.btn-group-table {
+  display: flex;
+}
