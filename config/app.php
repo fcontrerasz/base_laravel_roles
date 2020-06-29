@@ -166,6 +166,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        QCod\AppSettings\AppSettingsServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -234,6 +235,7 @@ return [
         'Charts' => ConsoleTVs\Charts\Classes\ChartJs\Chart::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        "AppSettings" => QCod\AppSettings\Facade::class
 
     ],
 

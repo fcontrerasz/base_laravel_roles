@@ -22,6 +22,11 @@ Breadcrumbs::for('inicio', function ($trail) {
 });
 
 // Home > About
+Breadcrumbs::for('/settings', function ($trail) {
+    $trail->parent('inicio');
+});
+
+// Home > About
 Breadcrumbs::for('usuarios', function ($trail) {
     $trail->parent('inicio');
     $trail->push('Usuarios', route('usuarios'));

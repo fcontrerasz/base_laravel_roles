@@ -42,7 +42,7 @@ Route::get('/empresa', 'EmpresaController@index')->name('empresa');
 Route::get('/experto', 'ExpertoController@index')->name('experto');
 Route::get('/panel', 'GenericoController@index')->name('panel');
 
-Route::group(['middleware'=>'auth'],function(){ 
+Route::group(['middleware'=>'auth'],function(){
     Route::get('/cambiarpass','UsuariosWebController@claveForm');
     Route::post('/cambiarpass','UsuariosWebController@cambiarClave')->name('changePassword');
     Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin');
