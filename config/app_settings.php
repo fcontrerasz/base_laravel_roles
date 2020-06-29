@@ -70,7 +70,7 @@ return [
 
     // Setting section class setting
     'section_class' => 'card mb-3',
-    'section_heading_class' => 'h4 p-xs',
+    'section_heading_class' => 'p-xs h4',
     'section_body_class' => 'row',
 
     // Input wrapper and group class setting
@@ -87,6 +87,7 @@ return [
 
     // Remove any setting which declaration removed later from sections
     'remove_abandoned_settings' => false,
+    'remove_label' => 'Quitar Imagen',
 
     // Controller to show and handle save setting
     'controller' => '\QCod\AppSettings\Controllers\AppSettingController',

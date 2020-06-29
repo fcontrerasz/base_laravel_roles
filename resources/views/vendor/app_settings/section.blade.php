@@ -1,5 +1,5 @@
 <div class="{{ Arr::get($fields, 'section_class', config('app_settings.section_class', 'card')) }} section-{{ Str::slug($fields['title']) }}">
-    <div class="p-md {{ Arr::get($fields, 'section_heading_class', config('app_settings.section_heading_class', 'card-header')) }}">
+    <div class="{{ Arr::get($fields, 'section_heading_class', config('app_settings.section_heading_class', 'card-header')) }}">
         <i class="{{ Arr::get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>
         {{ $fields['title'] }}
     </div>
