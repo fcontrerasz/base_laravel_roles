@@ -62,7 +62,7 @@ return [
     'url' => 'admin/configuracion',
 
     // Any middleware you want to run on above route
-    'middleware' => ['auth','role:admin|superadmin'],
+    'middleware' => ['auth','role:Super'],
 
     // View settings
     'setting_page_view' => 'registros.configuracion',

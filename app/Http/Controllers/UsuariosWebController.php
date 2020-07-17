@@ -7,7 +7,6 @@ use Kris\LaravelFormBuilder\FormBuilder;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PlantillaExport;
 use App\UsuariosWeb;
-use App\MenuRole;
 use App\Forms\UsuariosWebFrm;
 use DB; 
 use Hash;
@@ -41,7 +40,7 @@ class UsuariosWebController extends Controller
     {
 
         $nerds = new \App\UsuariosWeb;
-       // $nerds = $nerds->whereNotIn('username', ['superadmin', 'admin']);
+        $nerds = $nerds->whereNotIn('username', ['superadmin', 'admin']);
         $nerds = $nerds->sortable()->paginate(20);
 
         return view('registros.usuarios.listar_usuariosweb', compact('nerds','report'));
@@ -79,7 +78,7 @@ class UsuariosWebController extends Controller
         $model->password = bcrypt($request->get('new-password'));
         $model->save();
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.listar');
 
     }
 

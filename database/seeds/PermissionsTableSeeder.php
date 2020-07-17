@@ -43,7 +43,8 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'roles.mostrar']);
         Permission::create(['name' => 'roles.crear']);
         Permission::create(['name' => 'roles.eliminar']);
-
+        Permission::create(['name' => 'roles.exportar']);
+        
         Permission::create(['name' => 'empresas.listar']);
         Permission::create(['name' => 'empresas.editar']);
         Permission::create(['name' => 'empresas.mostrar']);
@@ -97,6 +98,7 @@ class PermissionsTableSeeder extends Seeder
             'roles.mostrar',
             'roles.crear',
             'roles.eliminar',
+            'roles.exportar',
             'empresas.listar',
             'empresas.editar',
             'empresas.mostrar',

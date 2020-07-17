@@ -3,7 +3,6 @@
 namespace App\Formularios;
 
 use Kris\LaravelFormBuilder\Form;
-use App\MenuRole;
 use App\UsuariosWeb;
 use Spatie\Permission\Models\Role;
 
@@ -32,7 +31,6 @@ class UsuariosWebFrm extends Form
             'url' => $url
         ];
 
-        $roles = MenuRole::all()->pluck('rol_glosa', 'idrol')->toArray();
         $roles = Role::all()->pluck('name', 'name')->toArray();
 
 

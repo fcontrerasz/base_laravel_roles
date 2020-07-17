@@ -75,7 +75,7 @@ class CamposController extends Controller
             return redirect()->back()->withErrors($errorInfo)->withInput();
         }
 
-        return redirect()->route('campos.index');
+        return redirect()->route('campos.listar');
     }
 
 
@@ -105,7 +105,7 @@ class CamposController extends Controller
         $model->fill($campos);
         $model->save();
 
-        return redirect()->route('campos.index');
+        return redirect()->route('campos.listar');
     }
 
     public function exportar()
@@ -118,7 +118,7 @@ class CamposController extends Controller
         $model = Campos::find($id);
         $model->delete();
         Session::put('message', 'Eliminado!');
-        return redirect()->route('campos.index');
+        return redirect()->route('campos.listar');
     }
 
     

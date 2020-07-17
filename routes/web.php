@@ -4,6 +4,7 @@ use Illuminate\Routing\UrlGenerator;
 
 Route::get('/', function () {
     if(auth()->user()){
+      //  dd(auth()->user()->roles);
         if(auth()->user()->hasRole('Super')){
             return redirect('/superadmin');
         }elseif(auth()->user()->hasRole('Administrador')){
@@ -53,14 +54,14 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('formulariodealta', 'AltaController')->middleware('auth');
 }); 
 
-Route::group(['middleware' => 'role:auditor|admin|superadmin'],function(){
+Route::group(['middleware' => 'role:Auditor|Administrador|Super'],function(){
     Route::get('auditor/informe', 'ChartController@index')->name('chart.index');
 });
 
 
 
 
-Route::group(['middleware' => 'role:admin|superadmin'],function(){
+Route::group(['middleware' => 'role:Administrador|Super'],function(){
    // Route::resource('admin/usuarios', 'UsuariosWebController');
     //Route::resource('admin/empresas', 'EmpresasWebController');
     //Route::resource('admin/campos', 'CamposController');

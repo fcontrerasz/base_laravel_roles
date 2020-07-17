@@ -14,7 +14,7 @@ class SuperAdminController extends Controller
     }
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['superadmin']);
+        $request->user()->authorizeRoles(['Super']);
         return view('super');
     }
 }

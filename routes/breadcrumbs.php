@@ -104,7 +104,7 @@ Breadcrumbs::for('campos.crear', function ($trail) {
 
 Breadcrumbs::for('campos.editar', function ($trail) {
     $trail->parent('campos.listar');
-    $trail->push('Editar Campo', route('campos.editar'));
+    $trail->push('Editar Campo', route('campos.listar'));
 });
 
 

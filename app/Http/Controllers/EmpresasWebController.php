@@ -54,6 +54,8 @@ class EmpresasWebController extends Controller
     {
     	
         $form = $this->getForm();
+
+      //  dd($form->getFieldValues());
         
 
         if (!$form->isValid()) {
@@ -61,13 +63,10 @@ class EmpresasWebController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        //dd($form->getFieldValues());
-
-
         $campos = $form->getFieldValues();
 
-        $aux_usuario = $campos["id"];
-        unset($campos["id"]);
+        $aux_usuario = $campos["idusr"];
+        unset($campos["idusr"]);
 
 
         try {
@@ -80,8 +79,6 @@ class EmpresasWebController extends Controller
 
             dd($errorInfo);
         }
-
-      //  dd($aa);
 
         $aa->users()->detach();
         $aa->users()->attach(UsuariosWeb::where('id', $aux_usuario)->first());
@@ -114,8 +111,8 @@ class EmpresasWebController extends Controller
         $form = $this->getForm($model);
        
         $campos = $form->getFieldValues();
-        $aux_usuario = $campos["id"];
-        unset($campos["id"]);
+        $aux_usuario = $campos["idusr"];
+        unset($campos["idusr"]);
 
         $model->fill($campos);
         $model->save();

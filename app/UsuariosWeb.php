@@ -30,47 +30,35 @@ class UsuariosWeb extends Authenticatable implements AuthenticatableContract, JW
     public $timestamps = false;
     protected $primaryKey = 'id';
 
-    public function roles_menu()
-    {
-        return $this->belongsToMany('App\MenuRole', 'asig_roles', 'idusr', 'idrol')->withTimestamps();
-    }
-
     public function empresas()
     {
-        //dd("1");
         return $this->belongsToMany('App\Empresa', 'asig_empresas', 'idusr', 'idemp')->withTimestamps();
     }
 
     public function authorizeRoles($menuroles)
     {
-      // dd($roles);
         if ($this->hasAnyRole($menuroles)) {
             return true;
         }
         abort(401, 'Esta acción no está autorizada.');
     }
+    
     public function hasAnyRole($menuroles)
     {
         if (is_array($menuroles)) {
             foreach ($menuroles as $role) {
-                if ($this->hasMenuRole($role)) {
+                if ($this->hasRole($role)) {
                     return true;
                 }
             }
         } else {
-            if ($this->hasMenuRole($menuroles)) {
+            if ($this->hasRole($menuroles)) {
                 return true;
             }
         }
         return false;
     }
-    public function hasMenuRole($menuroles)
-    {
-        if ($this->roles_menu()->where('rol_nombre', $menuroles)->first()) {
-            return true;
-        }
-        return false;
-    }
+
     public function hasAsigEmpresa()
     {
        $trae_emp = $this->empresas()->get();
@@ -88,9 +76,6 @@ class UsuariosWeb extends Authenticatable implements AuthenticatableContract, JW
          if ($this->empresas()->first()->empresa_validada) {
             return true;
          }
-       /* if ($this->empresas()->where('rol_nombre', $role)->first()) {
-            return true;
-        }*/
         return false;
     }
     public function getRole()

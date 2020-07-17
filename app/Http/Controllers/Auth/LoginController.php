@@ -30,7 +30,7 @@ class LoginController extends Controller
 
     public function authenticated()
     {
-      // dd("1");
+       
         if(auth()->user()->hasRole('Super')){
             return redirect('/superadmin');
         }elseif(auth()->user()->hasRole('Administrador')){
@@ -38,9 +38,9 @@ class LoginController extends Controller
         }elseif(auth()->user()->hasRole('Auditor')){
             return redirect('/auditor');
         }elseif(auth()->user()->hasRole('Experto')){
-            return redirect('/empresa');
-        }elseif(auth()->user()->hasRole('Empresa')){
             return redirect('/experto');
+        }elseif(auth()->user()->hasRole('Empresa')){
+            return redirect('/empresa');
         }elseif(auth()->user()->hasRole('Generico')){
             return redirect('/panel');
         } return redirect('/inicio');

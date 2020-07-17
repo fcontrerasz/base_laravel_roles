@@ -64,7 +64,7 @@ class EmpresaFrm extends Form
             'label' => 'Estado',
             'rules' => 'required'
             ])
-            ->add('id', 'select2_entity', [
+            ->add('idusr', 'select2_entity', [
             'label' => 'Cuenta Asociada',
             'selected' => $selected_asiguser,
             'class' => 'App\UsuariosWeb',

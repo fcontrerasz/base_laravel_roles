@@ -14,7 +14,7 @@ class ExpertoController extends Controller
 
     public function index(Request $request)
     {
-    	 $request->user()->authorizeRoles(['superadmin', 'admin','experto']);
+    	 $request->user()->authorizeRoles(['Super', 'Administrador','Experto']);
         return view('experto');
     }
 }

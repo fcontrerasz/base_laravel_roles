@@ -7,7 +7,6 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Gate;
 use App\Exports\PlantillaExport;
-use App\MenuRole;
 use Auth;
 
 class RolesController extends Controller
@@ -15,7 +14,7 @@ class RolesController extends Controller
 	public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin|superadmin');
+        $this->middleware('role:Super');
     }
 
     public function index(Request $request)

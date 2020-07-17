@@ -15,7 +15,7 @@ class EmpresaController extends Controller
 
     public function index(Request $request)
     {
-    	$request->user()->authorizeRoles(['superadmin', 'admin','empresa','auditor']);
+    	$request->user()->authorizeRoles(['Super', 'Administrador','Empresa','Auditor']);
         return view('empresa');
     }
 

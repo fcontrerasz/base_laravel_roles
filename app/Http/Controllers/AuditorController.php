@@ -18,7 +18,7 @@ class AuditorController extends Controller
         //$user = auth()->user()->getAllPermissions();
         //$user
         //dd($user);
-    	 $request->user()->authorizeRoles(['superadmin', 'admin','auditor']);
+    	 $request->user()->authorizeRoles(['Super', 'Administrador','Auditor']);
         return view('auditor');
     }
 }
