@@ -1,7 +1,11 @@
 @section('usuario')
                 <li class="nav-header text-center"> 
                     <div class="profile-element">
-                        <img alt="image" class="" src="{{ asset('img/logo_blank.png') }}"/>
+                        <?php 
+                            $logo = is_null(AppSettings::get('logo', null )) ? 'img/logo_blank.png' : 'storage/'.AppSettings::get('logo') ;
+                         ?>
+                        <img alt="image" class="img-responsive w-25" src='<?php echo asset("$logo" )?>' />
+
                     </div>
                 </li>
 @endsection
@@ -21,3 +25,5 @@
         </ul>
 
 @endsection
+
+

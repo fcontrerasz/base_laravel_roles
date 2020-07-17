@@ -10,7 +10,7 @@ class CreateRolesTable extends Migration
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'roles';
+    public $tableName = 'menu_roles';
 
     /**
      * Run the migrations.
@@ -20,6 +20,7 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists($this->tableName);
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('idrol');
@@ -37,7 +38,7 @@ class CreateRolesTable extends Migration
             array('rol_glosa' => 'Generico', 'rol_nombre' => 'generico')
         );
        // Model::insert($data);
-        DB::table('roles')->insert($data);
+        DB::table('menu_roles')->insert($data);
     }
 
     /**

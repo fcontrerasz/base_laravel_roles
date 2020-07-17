@@ -167,6 +167,7 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         QCod\AppSettings\AppSettingsServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Package Service Providers...
          */

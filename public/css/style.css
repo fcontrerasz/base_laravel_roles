@@ -236,12 +236,12 @@ h5 {
 
 .nav-third-level li a{
  /* background-color: lightgray;*/
-  color: #213a53 !important;
+  color: #948b96 !important;
 }
 
 .nav-third-level li a:hover{
-  background-color: lightgray !important;
-  color: #586b7d !important;
+ /* background-color: lightgray !important;*/
+  color: #fff !important;
 }
 
 

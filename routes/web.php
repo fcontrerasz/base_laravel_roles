@@ -4,24 +4,26 @@ use Illuminate\Routing\UrlGenerator;
 
 Route::get('/', function () {
     if(auth()->user()){
-        if(auth()->user()->hasRole('superadmin')){
+        if(auth()->user()->hasRole('Super')){
             return redirect('/superadmin');
-        }elseif(auth()->user()->hasRole('admin')){
+        }elseif(auth()->user()->hasRole('Administrador')){
             return redirect('/admin');
-        }elseif(auth()->user()->hasRole('auditor')){
+        }elseif(auth()->user()->hasRole('Auditor')){
             return redirect('/auditor');
-        }elseif(auth()->user()->hasRole('experto')){
+        }elseif(auth()->user()->hasRole('Experto')){
             return redirect('/experto');
-        }elseif(auth()->user()->hasRole('empresa')){
+        }elseif(auth()->user()->hasRole('Empresa')){
             return redirect('/empresa');
-        }elseif(auth()->user()->hasRole('generico')){
+        }elseif(auth()->user()->hasRole('Generico')){
             return redirect('/panel');
         } return abort(500);
    }else return view('auth.login');
 });
 
 //Auth::routes(['verify' => true]);
-
+Route::group(['middleware' => ['permission:destroy_notes']], function () {
+    Route::get('notes/{id}/destroy', 'NotesController@destroy')->name('notes.destroy');
+});
 
 //ChartController
 
@@ -56,17 +58,67 @@ Route::group(['middleware' => 'role:auditor|admin|superadmin'],function(){
 });
 
 
+
+
 Route::group(['middleware' => 'role:admin|superadmin'],function(){
-    Route::resource('admin/usuarios', 'UsuariosWebController');
-    Route::resource('admin/empresas', 'EmpresasWebController');
-    Route::resource('admin/campos', 'CamposController');
+   // Route::resource('admin/usuarios', 'UsuariosWebController');
+    //Route::resource('admin/empresas', 'EmpresasWebController');
+    //Route::resource('admin/campos', 'CamposController');
     //Route::get('admin/create-table', 'TableController@operate');
     Route::get('admin/exportar_usuarios', 'UsuariosWebController@exportar')->name('usuarios.exportar');
+    Route::get('admin/exportar_roles', 'RolesController@exportar')->name('roles.exportar');
     Route::get('admin/exportar_empresas', 'EmpresasWebController@exportar')->name('empresas.exportar');
     Route::get('admin/exportar_campos', 'EmpresasWebController@exportar')->name('campos.exportar');
     Route::get('dinamico_usuarios/traer', 'UsuariosWebController@postSearch')->name('usuarios.fetch');
     Route::get('admin/usuarios/clave/{id}', 'UsuariosWebController@clave')->name('usuarios.clave');
     Route::post('/actualizaclave/{id}','UsuariosWebController@actualizaclave')->name('actualizaclave');
+
+    Route::resource('admin/roles', 'RolesController', [
+        'names' => [
+            'index'     => 'roles.listar',
+            'create'    => 'roles.crear',
+            'edit'      => 'roles.editar',
+            'store'      => 'roles.guardar',
+            'update'      => 'roles.actualizar',
+            'destroy'      => 'roles.eliminar',
+        ]
+    ]);
+
+    Route::resource('admin/usuarios', 'UsuariosWebController', [
+        'names' => [
+            'index'     => 'usuarios.listar',
+            'create'    => 'usuarios.crear',
+            'edit'      => 'usuarios.editar',
+            'store'      => 'usuarios.guardar',
+            'update'      => 'usuarios.actualizar',
+            'destroy'      => 'usuarios.eliminar',
+        ]
+    ]);
+
+    Route::resource('admin/campos', 'CamposController', [
+        'names' => [
+            'index'     => 'campos.listar',
+            'create'    => 'campos.crear',
+            'edit'      => 'campos.editar',
+            'store'      => 'campos.guardar',
+            'update'      => 'campos.actualizar',
+            'destroy'      => 'campos.eliminar',
+        ]
+    ]); 
+
+    Route::resource('admin/empresas', 'EmpresasWebController', [
+        'names' => [
+            'index'     => 'empresas.listar',
+            'create'    => 'empresas.crear',
+            'edit'      => 'empresas.editar',
+            'store'      => 'empresas.guardar',
+            'update'      => 'empresas.actualizar',
+            'destroy'      => 'empresas.eliminar',
+        ]
+    ]); 
+    
+    Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+
 });
 
 
@@ -91,3 +143,12 @@ Route::get('/trae_encuesta', function () {
     $ruta = URL::signedRoute('encuestas.aplicar_encuesta', ['encuesta' => 1]);
     dd($ruta);
 })->name('encuestas');
+
+/*
+
+    testiar control de permisos
+*/
+
+    Route::group(['middleware' => ['permission:destroy_usuarios']], function () {
+        Route::get('admin/usuarios/{id}/destroy', 'UsuariosWebController@destroy')->name('usuarios.destroy');
+    });

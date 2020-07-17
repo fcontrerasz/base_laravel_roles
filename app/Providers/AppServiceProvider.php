@@ -34,10 +34,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         view()->composer('*', function($view) {
-           //dd(Menu::menus());
+
             if (Auth::check()) {
-              //  dd("ACA: ".Auth::user());
-              //  dd(auth()->user()->hasRole('superadmin'));
                 $view->with('menus', Menu::menus2());
             }else {
                 $view->with('menus', Menu::vacio());

@@ -31,17 +31,17 @@ class LoginController extends Controller
     public function authenticated()
     {
       // dd("1");
-        if(auth()->user()->hasRole('superadmin')){
+        if(auth()->user()->hasRole('Super')){
             return redirect('/superadmin');
-        }elseif(auth()->user()->hasRole('admin')){
+        }elseif(auth()->user()->hasRole('Administrador')){
             return redirect('/admin');
-        }elseif(auth()->user()->hasRole('auditor')){
+        }elseif(auth()->user()->hasRole('Auditor')){
             return redirect('/auditor');
-        }elseif(auth()->user()->hasRole('empresa')){
+        }elseif(auth()->user()->hasRole('Experto')){
             return redirect('/empresa');
-        }elseif(auth()->user()->hasRole('experto')){
+        }elseif(auth()->user()->hasRole('Empresa')){
             return redirect('/experto');
-        }elseif(auth()->user()->hasRole('generico')){
+        }elseif(auth()->user()->hasRole('Generico')){
             return redirect('/panel');
         } return redirect('/inicio');
     }

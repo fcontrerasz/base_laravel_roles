@@ -25,7 +25,7 @@ class AddAsigEmpresas extends Migration
             $table->index(["idemp"], 'fk_asig_emp_has_empresa_idx');
 
             $table->foreign('idusr', 'fk_usuarios_has_empresa_idx')
-                ->references('idusr')->on('usuarios')
+                ->references('id')->on('usuarios')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

@@ -66,8 +66,8 @@ class EmpresasWebController extends Controller
 
         $campos = $form->getFieldValues();
 
-        $aux_usuario = $campos["idusr"];
-        unset($campos["idusr"]);
+        $aux_usuario = $campos["id"];
+        unset($campos["id"]);
 
 
         try {
@@ -84,10 +84,10 @@ class EmpresasWebController extends Controller
       //  dd($aa);
 
         $aa->users()->detach();
-        $aa->users()->attach(UsuariosWeb::where('idusr', $aux_usuario)->first());
+        $aa->users()->attach(UsuariosWeb::where('id', $aux_usuario)->first());
 
 
-        return redirect()->route('empresas.index');
+        return redirect()->route('empresas.listar');
     }
 
 
@@ -114,8 +114,8 @@ class EmpresasWebController extends Controller
         $form = $this->getForm($model);
        
         $campos = $form->getFieldValues();
-        $aux_usuario = $campos["idusr"];
-        unset($campos["idusr"]);
+        $aux_usuario = $campos["id"];
+        unset($campos["id"]);
 
         $model->fill($campos);
         $model->save();
@@ -123,9 +123,9 @@ class EmpresasWebController extends Controller
         //dd($model);
 
         $model->users()->detach();
-        $model->users()->attach(UsuariosWeb::where('idusr', $aux_usuario)->first());
+        $model->users()->attach(UsuariosWeb::where('id', $aux_usuario)->first());
 
-        return redirect()->route('empresas.index');
+        return redirect()->route('empresas.listar');
     }
 
     public function destroy($id)
@@ -134,7 +134,7 @@ class EmpresasWebController extends Controller
         $model->users()->detach();
         $model->delete();
         Session::put('message', 'Eliminado!');
-        return redirect()->route('empresas.index');
+        return redirect()->route('empresas.listar');
     }
 
     public function exportar()

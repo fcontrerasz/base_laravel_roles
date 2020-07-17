@@ -31,7 +31,7 @@ class CreateAsigRolesTable extends Migration
             $table->index(["idrol"], 'fk_usuarios_has_perfil_perfil_idx');
 
             $table->foreign('idusr', 'fk_usuarios_has_perfil_usuario_idx')
-                ->references('idusr')->on('usuarios')
+                ->references('id')->on('usuarios')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

@@ -13,10 +13,10 @@ class CamposFrm extends Form
         
         if($this->getModel() && $this->getModel()->idcamp){
             $met = 'PUT';
-            $url = route('campos.update',$this->getModel()->idcamp);
+            $url = route('campos.actualizar',$this->getModel()->idcamp);
         }else{
             $met = 'POST';
-            $url = route('campos.store'); 
+            $url = route('campos.guardar'); 
         }
         $this->formOptions = [
             'method' => $met,

@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    <h2>Cuadro de Mando</h2>
+@endsection
+ 
 @section('content')
-<div class="row">
+<div class="wrapper wrapper-content animated fadeInRight">
+            
+            <div class="row">
                 <div class="col-md-2">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -69,4 +75,14 @@
                     </div>
                 </div>
             </div>
+            
+            
+        </div>
 @endsection
+
+@section('scripts')
+    <!-- ChartJS-->
+    <script src="js/plugins/chartJs/Chart.min.js"></script>
+    <script src="js/demo/chartjs-demo.js"></script>
+@endsection
+

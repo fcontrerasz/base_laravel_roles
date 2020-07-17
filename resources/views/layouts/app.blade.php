@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.titulo') }} - {{ config('app.subtitulo') }}</title>
+    <title>{{ AppSettings::get('app_name', 'default value') }}</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     

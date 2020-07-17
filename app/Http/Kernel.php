@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'dardealta' => \App\Http\Middleware\ChequearAlta::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+        'permission' => \App\Http\Middleware\PermissionMiddleware::class,
     ];
 
     /**

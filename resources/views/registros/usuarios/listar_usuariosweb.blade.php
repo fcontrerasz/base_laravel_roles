@@ -1,17 +1,8 @@
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<?php
-    use \koolreport\datagrid\DataTables;
-    use \koolreport\core\Utility as Util;
-    use \koolreport\inputs\Select2;
-    use \koolreport\widgets\koolphp\Table;
-    use \koolreport\inputs\TextBox;
-?>
-
 @extends('layouts.admin')
 
 @section('breadcrumbs')
     <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
-    {{ Breadcrumbs::render('usuarios.index') }}
+    {{ Breadcrumbs::render('usuarios.listar') }}
 @endsection
 
 @section('content')
@@ -28,21 +19,28 @@
 
                                 <div class="dt-buttons btn-group pull-right">
                                 
+                                
+                                @can('usuarios.exportar')
                                 <a href="{{ URL::route('usuarios.exportar') }}" target="_blank" class="btn btn-default buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>Excel</span>
                                 </a>
-                                <a class="hide btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>PDF</span></a>
-                                <a class="hide btn btn-default buttons-print" tabindex="0" aria-controls="DataTables_Table_0"><span>Imprimir</span></a>
-                                 <a class="btn btn-primary" href="{{ URL::route('usuarios.create') }}">Nuevo Usuario</a>
+                                @endcan
+
+                                @can('usuarios.crear')
+                                 <a class="btn btn-primary" href="{{ URL::route('usuarios.crear') }}">Nuevo Usuario</a>
+                                 @endcan
+
                                 </div>
 
                                 </div>
                             </div>
+
+                            @can('usuarios.listar')
                         
                         <div class="table-responsive">
                     <table class="table table-hover small ">
                         <thead>
                             <tr>
-                                <td>@sortablelink('idusr','ID')</td>
+                                <td>@sortablelink('id','ID')</td>
                                 <td>USUARIO</td>
                                 <td>NOMBRE</td>
                                 <td>CORREO</td>
@@ -53,24 +51,47 @@
                         <tbody>
                         @foreach($nerds as $key => $value)
                             <tr>
-                                <td>{{ $value->idusr }}</td>
+                                <td>{{ $value->id }}</td>
                                 <td>{{ $value->username }}</td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->email }}</td>
-                                <td>{{ $value->activado }}</td>
+                                <td>@if($value->activado = 1)  
+                                    <span class="badge badge-default">ACTIVO</span>      
+             
+@else
+                <span class="badge badge-default">OCULTO</span>
+@endif</td>
                                 <td>
 
-                                    {{ Form::open(array('url' => 'admin/usuarios/' . $value->idusr, 'class' => 'pull-right m-xs btn_delete_user')) }}
+                                    
 
-                                        <div class="btn-group btn-group-md" role="group">
+                                    
+
+                                    {{ Form::open(array('url' => 'admin/usuarios/' . $value->id, 'class' => 'pull-right m-xs btn_delete_user')) }}
+
+                                        @csrf
+
+                                        <div class="btn-group btn-group-md btn-group-table" role="group">
 
                                         {{ Form::hidden('_method', 'DELETE') }}
 
-                                        <a class="btn btn-md btn-default" href="{{ URL::route('usuarios.clave', ['id' => $value->idusr ]) }}"><i class="fa fa-key" aria-hidden="true"></i></a>
+                                        @can('usuarios.clave')
 
-                                        <a class="btn btn-md btn-default" href="{{ URL::route('usuarios.edit', ['id' => $value->idusr ]) }}"><i class="fa fa-pencil grey" aria-hidden="true"></i></a>
+                                        <a class="btn btn-md btn-default" href="{{ URL::route('usuarios.clave', ['id' => $value->id ]) }}"><i class="fa fa-key" aria-hidden="true"></i></a>
+
+                                        @endcan
+
+                                        @can('usuarios.editar')
+
+                                        <a class="btn btn-md btn-default" href="{{ URL::route('usuarios.editar', ['id' => $value->id ]) }}"><i class="fa fa-pencil grey" aria-hidden="true"></i></a>
+
+                                        @endcan
+
+                                        @can('usuarios.eliminar')
 
                                         {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-md', 'type' => 'submit']) }}
+
+                                        @endcan
 
                                         </div>
                                     
@@ -94,6 +115,13 @@
                     </table>
                     {!! $nerds->appends(request()->except('page'))->render() !!}
                 </div>
+
+                @else
+
+                <h4>No tienes permisos</h4>
+            
+
+                @endcan
                         
                     </div>
                 </div>

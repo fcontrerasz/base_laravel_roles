@@ -3,8 +3,9 @@
 namespace App\Formularios;
 
 use Kris\LaravelFormBuilder\Form;
-use App\Role;
+use App\MenuRole;
 use App\UsuariosWeb;
+use Spatie\Permission\Models\Role;
 
 
 class UsuariosWebFrm extends Form
@@ -12,16 +13,17 @@ class UsuariosWebFrm extends Form
     public function buildForm()
     {
         
-        if($this->getModel() && $this->getModel()->idusr){
+        if($this->getModel() && $this->getModel()->id){
             $mostrar = false;
             $met = 'PUT';
-            $url = route('usuariosweb.update',$this->getModel()->idusr);
-            $aux_user = UsuariosWeb::find($this->getModel()->idusr);
-            $selected_roles = $aux_user->roles()->get()->pluck('idrol')->toArray();
+            $url = route('usuarios.actualizar',$this->getModel()->id);
+            $aux_user = UsuariosWeb::find($this->getModel()->id);
+            $selected_roles = $aux_user->roles()->pluck('name', 'name')->toArray();
+            //$selected_roles = $aux_user->roles_menu()->get()->pluck('idrol')->toArray();
         }else{
             $mostrar = true;
             $met = 'POST';
-            $url = route('usuariosweb.store'); 
+            $url = route('usuarios.guardar'); 
             $selected_roles = [];           
         }
 
@@ -30,10 +32,9 @@ class UsuariosWebFrm extends Form
             'url' => $url
         ];
 
-        $roles = Role::all()->pluck('rol_glosa', 'idrol')->toArray();
+        $roles = MenuRole::all()->pluck('rol_glosa', 'idrol')->toArray();
+        $roles = Role::all()->pluck('name', 'name')->toArray();
 
-     //   dd($roles);
-      // dd($selected_roles);
 
         $this
             ->add('name', 'text', [

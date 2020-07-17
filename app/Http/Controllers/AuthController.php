@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         $user = JWTAuth::user();
         if (count((array)$user) > 0) {
-            return response()->json(['status' => 'success', 'user' => $user->only(['idusr', 'name', 'username', 'email']), 'token' => $token]);
+            return response()->json(['status' => 'success', 'user' => $user->only(['id', 'name', 'username', 'email']), 'token' => $token]);
         } else {
             return response()->json(['status' => 'fail'], 401);
         }

@@ -18,7 +18,7 @@ class MenusTableSeeder extends Seeder
             'padre' => 0,
             'orden' => 0,
             'activo' => 1,
-            'permisos' => '{ "roles": ["auditor"] }'
+            'permisos' => '{ "roles": ["Auditor"] }'
         ]);
 
         $empresa = factory(Menu::class)->create([
@@ -27,7 +27,7 @@ class MenusTableSeeder extends Seeder
             'padre' => 0,
             'orden' => 0,
             'activo' => 1,
-            'permisos' => '{ "roles": ["empresa"] }'
+            'permisos' => '{ "roles": ["Empresa"] }'
         ]);
 
         $super = factory(Menu::class)->create([
@@ -36,7 +36,7 @@ class MenusTableSeeder extends Seeder
             'padre' => 0,
             'orden' => 0,
             'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin"] }'
+            'permisos' => '{ "roles": ["Super"] }'
         ]);
 
         $admin = factory(Menu::class)->create([
@@ -45,7 +45,7 @@ class MenusTableSeeder extends Seeder
             'padre' => 0,
             'orden' => 0,
             'activo' => 1,
-            'permisos' => '{ "roles": ["admin"] }'
+            'permisos' => '{ "roles": ["Administrador"] }'
         ]);
 
         $experto = factory(Menu::class)->create([
@@ -54,83 +54,92 @@ class MenusTableSeeder extends Seeder
             'padre' => 0,
             'orden' => 0,
             'activo' => 1,
-            'permisos' => '{ "roles": ["experto"] }'
+            'permisos' => '{ "roles": ["Experto"] }'
         ]);
 
         $config = factory(Menu::class)->create([
             'nombre' => 'Configuración',
-            'slug' => 'configuracion',
+            'slug' => 'dummy-configuracion',
             'padre' => 0,
             'orden' => 2,
             'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin"] }'
+            'permisos' => '{ "roles": ["Super"] }'
         ]);
 
         $general = factory(Menu::class)->create([
             'nombre' => 'General',
-            'slug' => 'general',
+            'slug' => 'admin/configuracion',
             'padre' => $config->id,
             'orden' => 0,
             'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin"] }'
+            'permisos' => '{ "roles": ["Super"] }'
         ]);
 
-        $menu = factory(Menu::class)->create([
-            'nombre' => 'Menus',
-            'slug' => 'menues',
-            'padre' => $config->id,
+
+        $usuarios =  factory(Menu::class)->create([
+            'nombre' => 'Accesos',
+            'slug' => 'dummy-accesos',
+            'padre' => 0,
             'orden' => 1,
             'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin"] }'
-        ]);
-        
-        factory(Menu::class)->create([
-            'nombre' => 'Listar Menues',
-            'slug' => 'listar.menues',
-            'padre' => $menu->id,
-            'orden' => 0,
-            'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin"] }'
+            'permisos' => '{ "roles": ["Super","Administrador"] }'
         ]);
 
         factory(Menu::class)->create([
             'nombre' => 'Usuarios',
             'slug' => 'admin/usuarios',
-            'padre' => 0,
+            'padre' => $usuarios->id,
+            'orden' => 1,
+            'activo' => 1,
+            'permisos' => '{ "roles": ["Super","Administrador"] }'
+        ]);
+
+        factory(Menu::class)->create([
+            'nombre' => 'Roles',
+            'slug' => 'admin/roles',
+            'padre' => $usuarios->id,
+            'orden' => 2,
+            'activo' => 1,
+            'permisos' => '{ "roles": ["Super"] }'
+        ]);
+
+        $menu = factory(Menu::class)->create([
+            'nombre' => 'Menus',
+            'slug' => 'admin/menues',
+            'padre' => $config->id,
+            'orden' => 1,
+            'activo' => 1,
+            'permisos' => '{ "roles": ["Super"] }'
+        ]);
+        
+     /*   factory(Menu::class)->create([
+            'nombre' => 'Listar Menues',
+            'slug' => 'listar.menues',
+            'padre' => $menu->id,
             'orden' => 0,
             'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin","admin"] }'
-        ]);
+            'permisos' => '{ "roles": ["Super"] }'
+        ]);*/
 
         factory(Menu::class)->create([
             'nombre' => 'Empresas',
             'slug' => 'admin/empresas',
             'padre' => 0,
-            'orden' => 1,
+            'orden' => 2,
             'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin","admin"] }'
+            'permisos' => '{ "roles": ["Super"] }'
         ]);
 
         factory(Menu::class)->create([
             'nombre' => 'Campos',
             'slug' => 'admin/campos',
             'padre' => 0,
-            'orden' => 2,
-            'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin","admin"] }'
-        ]);
-
-        factory(Menu::class)->create([
-            'nombre' => 'Configuracion',
-            'slug' => 'admin/configuracion',
-            'padre' => 0,
             'orden' => 3,
             'activo' => 1,
-            'permisos' => '{ "roles": ["superadmin","admin"] }'
+            'permisos' => '{ "roles": ["Super"] }'
         ]);
 
-
-        
+      
 
       /*  factory(Menu::class)->create([
             'nombre' => 'Opción 2',

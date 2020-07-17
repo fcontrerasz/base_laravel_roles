@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('breadcrumbs')
-    
+    <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
+    {{ Breadcrumbs::render('campos.listar') }}
 @endsection
 
 @section('content')
@@ -17,14 +18,23 @@
                                 <div class="col-md-12">
 
                                 <div class="dt-buttons btn-group pull-right">
-                                     <a href="{{ URL::route('campos.exportar') }}" target="_blank" class="btn btn-default buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>Excel</span>
+                                
+                                 @can('campos.exportar')
+                                <a href="{{ URL::route('campos.exportar') }}" target="_blank" class="btn btn-default buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>Excel</span>
                                 </a>
-                                 <a class="btn btn-primary" href="{{ URL::route('campos.create') }}">Nuevo Campo</a>
+                                @endcan
+                                
+                                 @can('campos.crear')
+                                 <a class="btn btn-primary" href="{{ URL::route('campos.crear') }}">Nuevo Campo</a>
+                                @endcan
+
                                 </div>
 
                                 </div>
                             </div>
                         
+                        @can('campos.listar')
+
                         <div class="table-responsive">
                     <table class="table table-hover small ">
                         <thead>
@@ -47,13 +57,13 @@
                                 <td>{{ $value->created_at }}</td>
                                 <td>
 
-                                    {{ Form::open(array('url' => 'admin/campos/' . $value->idcamp, 'class' => 'pull-right m-xs btn_delete_user')) }}
+                                    {{ Form::open(array('route' => ['campos.eliminar', $value->idcamp] , 'class' => 'pull-right m-xs btn_delete_user')) }}
 
                                         <div class="btn-group btn-group-md btn-group-table" role="group">
 
                                         {{ Form::hidden('_method', 'DELETE') }}
 
-                                        <a class="btn btn-md btn-default" href="{{ URL::route('campos.edit', ['id' => $value->idcamp ]) }}"><i class="fa fa-pencil grey" aria-hidden="true"></i></a>
+                                        <a class="btn btn-md btn-default" href="{{ URL::route('campos.editar', ['id' => $value->idcamp ]) }}"><i class="fa fa-pencil grey" aria-hidden="true"></i></a>
 
                                         {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-md', 'type' => 'submit']) }}
 
@@ -79,7 +89,14 @@
                     </table>
                     {!! $nerds->appends(request()->except('page'))->render() !!}
                 </div>
-                        
+            
+                @else
+
+                <h4>No tienes permisos</h4>
+            
+
+                @endcan
+
                     </div>
                 </div>
 

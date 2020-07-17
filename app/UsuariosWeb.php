@@ -5,25 +5,34 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Auth\Authenticatable;
+//use Illuminate\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+//use Spatie\Permission\Traits\HasPermissions;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Spatie\Permission\Traits\HasRoles;
 
 //Añadimos la clase JWTSubject 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
-class UsuariosWeb extends Model  implements AuthenticatableContract, JWTSubject {
+class UsuariosWeb extends Authenticatable implements AuthenticatableContract, JWTSubject {
 
-    use Authenticatable;
+    //use Authenticatable;
+    use Notifiable;
 	use Sortable;
+    use HasRoles;
+
     public $guarded = [];
-    public $sortable = ['idusr'];
+    public $sortable = ['id'];
     protected $table = 'usuarios';
     public $timestamps = false;
-    protected $primaryKey = 'idusr';
+    protected $primaryKey = 'id';
 
-    public function roles()
+    public function roles_menu()
     {
-        return $this->belongsToMany('App\Role', 'asig_roles', 'idusr', 'idrol')->withTimestamps();
+        return $this->belongsToMany('App\MenuRole', 'asig_roles', 'idusr', 'idrol')->withTimestamps();
     }
 
     public function empresas()
@@ -32,32 +41,32 @@ class UsuariosWeb extends Model  implements AuthenticatableContract, JWTSubject 
         return $this->belongsToMany('App\Empresa', 'asig_empresas', 'idusr', 'idemp')->withTimestamps();
     }
 
-    public function authorizeRoles($roles)
+    public function authorizeRoles($menuroles)
     {
       // dd($roles);
-        if ($this->hasAnyRole($roles)) {
+        if ($this->hasAnyRole($menuroles)) {
             return true;
         }
         abort(401, 'Esta acción no está autorizada.');
     }
-    public function hasAnyRole($roles)
+    public function hasAnyRole($menuroles)
     {
-        if (is_array($roles)) {
-            foreach ($roles as $role) {
-                if ($this->hasRole($role)) {
+        if (is_array($menuroles)) {
+            foreach ($menuroles as $role) {
+                if ($this->hasMenuRole($role)) {
                     return true;
                 }
             }
         } else {
-            if ($this->hasRole($roles)) {
+            if ($this->hasMenuRole($menuroles)) {
                 return true;
             }
         }
         return false;
     }
-    public function hasRole($role)
+    public function hasMenuRole($menuroles)
     {
-        if ($this->roles()->where('rol_nombre', $role)->first()) {
+        if ($this->roles_menu()->where('rol_nombre', $menuroles)->first()) {
             return true;
         }
         return false;
@@ -86,7 +95,11 @@ class UsuariosWeb extends Model  implements AuthenticatableContract, JWTSubject 
     }
     public function getRole()
     {
-        return $this->roles()->first()->rol_nombre;
+        return $this->roles->first()->name;
+    }
+    public function getMenuRole()
+    {
+        return $this->roles_menu()->first()->rol_nombre;
     }
     public function getJWTIdentifier()
     {

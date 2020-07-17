@@ -7,12 +7,14 @@ use Kris\LaravelFormBuilder\FormBuilder;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PlantillaExport;
 use App\UsuariosWeb;
-use App\Role;
+use App\MenuRole;
 use App\Forms\UsuariosWebFrm;
 use DB; 
 use Hash;
 use Auth;
 use Session;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UsuariosWebController extends Controller
 {
@@ -39,7 +41,7 @@ class UsuariosWebController extends Controller
     {
 
         $nerds = new \App\UsuariosWeb;
-        $nerds = $nerds->whereNotIn('username', ['superadmin', 'admin']);
+       // $nerds = $nerds->whereNotIn('username', ['superadmin', 'admin']);
         $nerds = $nerds->sortable()->paginate(20);
 
         return view('registros.usuarios.listar_usuariosweb', compact('nerds','report'));
@@ -61,7 +63,7 @@ class UsuariosWebController extends Controller
 
      public function actualizaclave($id, Request $request){
 
-        $exists = UsuariosWeb::where('idusr', '=', $id)->exists();
+        $exists = UsuariosWeb::where('id', '=', $id)->exists();
         if(!$exists){
             return redirect()->back()->with("error","Error de usuario.");
         }
@@ -109,6 +111,7 @@ class UsuariosWebController extends Controller
     {
     	//dd(Auth::user()->getRole());
         $roles = Role::all();
+        //dd($roles);
         $form = $this->getForm();
         return view('registros.usuarios.nuevo_usuarioweb', compact('form','roles'));
     }
@@ -124,16 +127,12 @@ class UsuariosWebController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        //dd($form->getFieldValues());
-
         $clave = $form->getFieldValues()["password"];
         $campos = $form->getFieldValues();
         $campos["password"] = bcrypt($clave);
 
         $aux_roles = $campos["role"];
         unset($campos["role"]);
-
-        
 
         try {
         
@@ -146,33 +145,19 @@ class UsuariosWebController extends Controller
             dd($errorInfo);
         }
 
-       // dd($campos);
+        $aa->syncRoles($aux_roles);
 
-        $aa->roles()->detach();
-
-        foreach ($aux_roles as $key => $value) {
-           $aa->roles()->attach(Role::where('idrol', $value)->first());
-        }
-
-
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.listar');
     }
 
 
 
     public function edit($id)
     {
-       /* $model = DB::table('usuarios')
-        ->join('asig_roles', 'usuarios.idusr', '=', 'asig_roles.idrol')
-        ->get()
-        ->where('idusr', '=', $id);*/
+
         $model = UsuariosWeb::find($id);
         $roles = $model->roles()->get();
-        $t_roles = Role::all();
 
-        //dd($t_roles);
-     
-        //dd($model);
         $form = $this->getForm($model);
         return view('registros.usuarios.edita_usuarioweb', compact('form','id','roles'));
     }
@@ -181,7 +166,7 @@ class UsuariosWebController extends Controller
     {   
         
 
-    	$exists = UsuariosWeb::where('idusr', '=', $id)->exists();
+    	$exists = UsuariosWeb::where('id', '=', $id)->exists();
         if(!$exists){
             Session::flash('error', 'Usuario no existe');
             return redirect()->back()->withInput();
@@ -190,56 +175,42 @@ class UsuariosWebController extends Controller
         $model = UsuariosWeb::find($id);
         $form = $this->getForm($model);
        
-       // $form->redirectIfNotValid();
-
+       
         $campos = $form->getFieldValues();
 
         $aux_roles = $campos["role"];
         unset($campos["role"]);
 
-       // dd($campos);
-
-       /* DB::table('ASIG_ROLES')->where('idusr', $id)->update(
-            ['idrol' => $idrol,
-             "updated_at" => \Carbon\Carbon::now()]
-        );*/
-
-        //$aa = UsuariosWeb::create($campos);
-
         $model->fill($campos);
         $model->save();
 
 
-        $model->roles()->detach();
+        $model->syncRoles($aux_roles);
 
-        foreach ($aux_roles as $key => $value) {
-           $model->roles()->attach(Role::where('idrol', $value)->first());
-        }
-
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.listar');
     }
 
     public function destroy($id)
     {
-     //  dd($id);
         $model = UsuariosWeb::find($id);
-        $model->roles()->detach();
+        $model->roles_menu()->detach();
+        $model->empresas()->detach();
+        $model->syncRoles();
         $model->delete();
         Session::put('message', 'Eliminado!');
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.listar');
     }
 
     public function exportar()
     {
-       // dd("HOla");
         return Excel::download(new PlantillaExport(), 'plantilla_123123_.xlsx');
     }
 
     public function postSearch(Request $request)
-   {
+    {
 
         $term = $request->term ?: '';
-        $tags = UsuariosWeb::where('name', 'like', $term.'%')->pluck('name', 'idusr');
+        $tags = UsuariosWeb::where('name', 'like', $term.'%')->pluck('name', 'id');
         $valid_tags = [];
         foreach ($tags as $id => $tag) {
             $valid_tags[] = ['id' => $id, 'text' => $tag];

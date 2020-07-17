@@ -13,14 +13,14 @@ class EmpresaFrm extends Form
         
         if($this->getModel() && $this->getModel()->idemp){
             $met = 'PUT';
-            $url = route('empresas.update',$this->getModel()->idemp);
+            $url = route('empresas.actualizar',$this->getModel()->idemp);
             $aux_emp = Empresa::find($this->getModel()->idemp);
             $asiguser = $aux_emp->users()->get()->first();
-            $selected_asiguser = $asiguser->idusr;
+            $selected_asiguser = $asiguser->id;
            // $selected_roles = [];  
         }else{
             $met = 'POST';
-            $url = route('empresas.store'); 
+            $url = route('empresas.guardar'); 
             $selected_asiguser = "";           
         }
 
@@ -36,7 +36,7 @@ class EmpresaFrm extends Form
       //  if($rol == "admin") $roles = Role::whereIn('idrol', [2,4,8])->pluck('rol_glosa', 'idrol')->toArray();
      //   if($rol == "superadmin") $roles = Role::pluck('rol_glosa', 'idrol')->toArray();
 
-        $usuarios = UsuariosWeb::pluck('name', 'idusr')->toArray();
+        $usuarios = UsuariosWeb::pluck('name', 'id')->toArray();
 
         $this
             ->add('rut', 'text', [
@@ -64,18 +64,25 @@ class EmpresaFrm extends Form
             'label' => 'Estado',
             'rules' => 'required'
             ])
-            ->add('idusr', 'select2_entity', [
+            ->add('id', 'select2_entity', [
             'label' => 'Cuenta Asociada',
             'selected' => $selected_asiguser,
             'class' => 'App\UsuariosWeb',
             'property' => 'name',
-            'property_key' => 'idusr',
+            'property_key' => 'id',
             'query_builder' => function (UsuariosWeb $ele) {
+                
+
+             //   $data = $ele::role('Empresa')->get();
+                
                 $qite = $ele::whereHas(
                     'roles', function($q){
-                        $q->where('rol_nombre', 'empresa');
+                       $q->where('name', 'Empresa');
                     }
                 )->get();
+
+              //  dd($qite);
+
                 return $qite;
             },
             'empty_value' => '=== Seleccione ===',

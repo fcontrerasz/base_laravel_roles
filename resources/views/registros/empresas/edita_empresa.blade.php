@@ -2,7 +2,7 @@
 
 @section('breadcrumbs')
     <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
-        {{ Breadcrumbs::render('usuarios.edit') }}
+        {{ Breadcrumbs::render('empresas.editar') }}
 @endsection
 
 @section('content')
@@ -37,7 +37,7 @@
          <div class="col-sm-4">{!! form_row($form->razon_social) !!}</div>
     </div>
      <div class="row">
-        <div class="col-sm-4">{!! form_row($form->idusr) !!}</div>
+        <div class="col-sm-4">{!! form_row($form->id) !!}</div>
         <div class="col-sm-4">{!! form_row($form->email) !!}</div>
          <div class="col-sm-4">{!! form_row($form->activado) !!}</div>
 

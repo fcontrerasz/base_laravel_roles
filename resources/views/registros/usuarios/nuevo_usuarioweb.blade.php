@@ -2,7 +2,7 @@
 
 @section('breadcrumbs')
     <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
-    {{ Breadcrumbs::render('usuarios.create') }}
+    {{ Breadcrumbs::render('usuarios.crear') }}
 @endsection
 
 @section('content')

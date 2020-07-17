@@ -21,12 +21,7 @@ Breadcrumbs::for('inicio', function ($trail) {
     
 });
 
-// Home > About
-Breadcrumbs::for('/settings', function ($trail) {
-    $trail->parent('inicio');
-});
 
-// Home > About
 Breadcrumbs::for('usuarios', function ($trail) {
     $trail->parent('inicio');
     $trail->push('Usuarios', route('usuarios'));
@@ -51,74 +46,82 @@ Breadcrumbs::for('reunion', function ($trail) {
 });
 
 
-
+// Admin > Usuarios
+Breadcrumbs::for('configuracion.listar', function ($trail) {
+    $trail->push('Inicio', URL::to('/'));
+    $trail->push('Editar Configuración', route('usuarios.listar'));
+});
 
 
 // Admin > Usuarios
-Breadcrumbs::for('usuarios.index', function ($trail) {
-    $trail->parent('inicio');
-    $trail->push('Listar Usuarios', route('usuarios.index'));
+Breadcrumbs::for('usuarios.listar', function ($trail) {
+    $trail->push('Inicio', URL::to('/'));
+    $trail->push('Listar Usuarios', route('usuarios.listar'));
 });
 
-Breadcrumbs::for('usuarios.create', function ($trail) {
-    $trail->parent('usuarios.index');
-    $trail->push('Nuevo Usuario', route('usuarios.create'));
+Breadcrumbs::for('usuarios.crear', function ($trail) {
+    $trail->parent('usuarios.listar');
+    $trail->push('Nuevo Usuario', route('usuarios.crear'));
 });
 
-Breadcrumbs::for('usuarios.edit', function ($trail) {
-    $trail->parent('usuarios.index');
-    $trail->push('Editar Usuario', route('usuarios.create'));
+Breadcrumbs::for('usuarios.editar', function ($trail) {
+    $trail->parent('usuarios.listar');
+    $trail->push('Editar Usuario', route('usuarios.crear'));
 });
 
 Breadcrumbs::for('usuarios.clave', function ($trail) {
-    $trail->parent('usuarios.index');
-    $trail->push('Cambio de Clave', route('usuarios.index'));
+    $trail->parent('usuarios.listar');
+    $trail->push('Cambio de Clave', route('usuarios.listar'));
 });
 
 // Admin > Empresas
-Breadcrumbs::for('empresas.index', function ($trail) {
+Breadcrumbs::for('empresas.listar', function ($trail) {
+    $trail->push('Inicio', URL::to('/'));
+    $trail->push('Listar Empresas', route('empresas.listar'));
+});
+
+Breadcrumbs::for('empresas.crear', function ($trail) {
+    $trail->parent('empresas.listar');
+    $trail->push('Nueva Empresa', route('empresas.crear'));
+});
+
+Breadcrumbs::for('empresas.editar', function ($trail) {
+    $trail->parent('empresas.listar');
+    $trail->push('Editar Empresa', route('empresas.crear'));
+});
+
+
+// Admin > Campos
+Breadcrumbs::for('campos.listar', function ($trail) {
+    $trail->push('Inicio', URL::to('/'));
+    $trail->push('Listar Campos', route('campos.listar'));
+});
+
+Breadcrumbs::for('campos.crear', function ($trail) {
+    $trail->parent('campos.listar');
+    $trail->push('Nuevo Campo', route('campos.crear'));
+});
+
+Breadcrumbs::for('campos.editar', function ($trail) {
+    $trail->parent('campos.listar');
+    $trail->push('Editar Campo', route('campos.editar'));
+});
+
+
+// Roles > Listar
+Breadcrumbs::for('roles.listar', function ($trail) {
+    $trail->push('Inicio', URL::to('/'));
+    $trail->push('Listar Roles', route('roles.listar'));
+});
+
+Breadcrumbs::for('roles.crear', function ($trail) {
     $trail->parent('inicio');
-    $trail->push('Listar Empresas', route('empresas.index'));
+    $trail->push('Listar Roles', route('roles.listar'));
+    $trail->push('Crear Nuevo Rol');
 });
 
-Breadcrumbs::for('empresas.create', function ($trail) {
-    $trail->parent('empresas.index');
-    $trail->push('Nueva Empresa', route('empresas.create'));
-});
-
-Breadcrumbs::for('empresas.edit', function ($trail) {
-    $trail->parent('empresas.index');
-    $trail->push('Editar Empresa', route('empresas.create'));
-});
-
-
-// Admin > Capos
-Breadcrumbs::for('campos.index', function ($trail) {
+Breadcrumbs::for('roles.editar', function ($trail) {
     $trail->parent('inicio');
-    $trail->push('Listar Campos', route('campos.index'));
+    $trail->push('Listar Roles', route('roles.listar'));
+    $trail->push('Editar Rol');
 });
-
-Breadcrumbs::for('campos.create', function ($trail) {
-    $trail->parent('campos.index');
-    $trail->push('Nuevo Campo', route('campos.create'));
-});
-
-Breadcrumbs::for('campos.edit', function ($trail) {
-    $trail->parent('campos.index');
-    $trail->push('Editar Campo', route('campos.create'));
-});
-
-// Admin > Usuarios > Crear
-
-/*
-// Home > Blog > [Category]
-Breadcrumbs::for('category', function ($trail, $category) {
-    $trail->parent('blog');
-    $trail->push($category->title, route('category', $category->id));
-});
-
-// Home > Blog > [Category] > [Post]
-Breadcrumbs::for('post', function ($trail, $post) {
-    $trail->parent('category', $post->category);
-    $trail->push($post->title, route('post', $post->id));
-});*/

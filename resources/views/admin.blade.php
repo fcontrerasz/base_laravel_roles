@@ -1,10 +1,7 @@
 @extends('layouts.admin')
 
 @section('breadcrumbs')
-    <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
-    @if($breadcrumb->title != 'Inicio')
-     {{ Breadcrumbs::render('inicio') }}
-    @endif
+    <h2>Dashboard</h2>
 @endsection
  
 @section('content')

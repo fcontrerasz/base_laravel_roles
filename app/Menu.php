@@ -56,9 +56,10 @@ class Menu extends Model
     }
     public static function menus2()
     {
-        //dd();
+
         $menus = new Menu();
         $data = $menus->optionsMenu(auth()->user()->getRole());
+
         $menuAll = [];
         foreach ($data as $line) {
             $item = [ array_merge($line, ['submenu' => $menus->getChildren($data, $line) ]) ];

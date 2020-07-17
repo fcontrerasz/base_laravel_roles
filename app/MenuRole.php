@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class MenuRole extends Model
 {
-    protected $table = 'roles';
+    protected $table = 'menu_roles';
     public $timestamps = false;
     protected $primaryKey = 'idrol';
 

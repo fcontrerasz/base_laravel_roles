@@ -2,7 +2,7 @@
 
 @section('breadcrumbs')
     <h2>{{ ($breadcrumb = Breadcrumbs::current()) ? "$breadcrumb->title" : '' }}</h2>
-    {{ Breadcrumbs::render('empresas.index') }}
+    {{ Breadcrumbs::render('empresas.listar') }}
 @endsection
 
 @section('content')
@@ -18,31 +18,34 @@
                                 <div class="col-md-12">
 
                                 <div class="dt-buttons btn-group pull-right">
-                                
+
+
+                                @can('empresas.exportar')
                                 <a href="{{ URL::route('empresas.exportar') }}" target="_blank" class="btn btn-default buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_0"><span>Excel</span>
                                 </a>
-                                 <a class="btn btn-primary" href="{{ URL::route('empresas.create') }}">Nueva Empresa</a>
+                                @endcan
+
+                                @can('empresas.crear')
+                                 <a class="btn btn-primary" href="{{ URL::route('empresas.crear') }}">Nueva Empresa</a>
+                                @endcan
+
                                 </div>
 
                                 </div>
                             </div>
+
+                            @can('empresas.listar')
                         
                         <div class="table-responsive">
                     <table class="table table-hover small ">
                         <thead>
-                            <tr>idemp
-
-
-
-
-
+                            <tr>
                                 <td>@sortablelink('idemp','ID')</td>
                                 <td>@sortablelink('rut','RUT')</td>
                                 <td>@sortablelink('nombre','NOMBRE')</td>
                                 <td>@sortablelink('razon_social','RAZON')</td>
                                 <td>@sortablelink('empresa_validada','VALIDADA')</td>
                                 <td>@sortablelink('created_at','CREACION')</td>
-                                <td>ACTIVO</td>
                                 <td style="width: 50px">ACCION</td>
                             </tr>
                         </thead>
@@ -57,13 +60,13 @@
                                 <td>{{ $value->created_at }}</td>
                                 <td>
 
-                                    {{ Form::open(array('url' => 'admin/empresas/' . $value->idemp, 'class' => 'pull-right m-xs btn_delete_user')) }}
+                                    {{ Form::open(array('route' => ['campos.eliminar', $value->idemp], 'class' => 'pull-right m-xs btn_delete_user')) }}
 
-                                        <div class="btn-group btn-group-md" role="group">
+                                        <div class="btn-group btn-group-md btn-group-table" role="group">
 
                                         {{ Form::hidden('_method', 'DELETE') }}
 
-                                        <a class="btn btn-md btn-default" href="{{ URL::route('empresas.edit', ['id' => $value->idemp ]) }}"><i class="fa fa-pencil grey" aria-hidden="true"></i></a>
+                                        <a class="btn btn-md btn-default" href="{{ URL::route('empresas.editar', ['id' => $value->idemp ]) }}"><i class="fa fa-pencil grey" aria-hidden="true"></i></a>
 
                                         {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-md', 'type' => 'submit']) }}
 
@@ -89,6 +92,13 @@
                     </table>
                     {!! $nerds->appends(request()->except('page'))->render() !!}
                 </div>
+
+                @else
+
+                <h4>No tienes permisos</h4>
+            
+
+                @endcan
                         
                     </div>
                 </div>

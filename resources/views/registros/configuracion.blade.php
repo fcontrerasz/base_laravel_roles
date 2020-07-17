@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
     <h2>Configuración</h2>
-    
+    {{ Breadcrumbs::render('configuracion.listar') }}
 @endsection
 
 @section('content')
@@ -31,7 +31,14 @@
     </div>
     @endif
 
+    @can('configuracion.listar')
                             @include('app_settings::_settings')
+    @else
+
+    <h4>No tienes permisos</h4>
+            
+
+    @endcan                            
 
                             </div>
 
