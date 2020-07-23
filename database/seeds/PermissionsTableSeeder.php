@@ -17,8 +17,6 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::create(['name' => 'configuracion.listar']);
 
-        //dd("llegue");
-        //Permission list
         Permission::create(['name' => 'usuarios.listar']);
         Permission::create(['name' => 'usuarios.editar']);
         Permission::create(['name' => 'usuarios.mostrar']);
